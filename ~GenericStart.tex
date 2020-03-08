@@ -1,0 +1,147 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Preamble optimized for optical material research and training. It is heavily commented to help new users, the specific templates in this repository have this preamble with less comments. Some examples of package uses are provided in the document environment, modify or remove as needed. The same preamble lightly commented with the most useful is in the ~GenericPreamble file of this repository. 
+%------------------------------------------------------------------
+%Écrit par Claudine Nì. Allen			               
+%Dernière modification : 7 mars 2020
+%ToDo: 
+% - Cheatsheet for babel-french and SIunitx commands to add to this repo
+% - More examples for most common package uses below
+% - Follow the development of integrating the Citation Style Language (CSL) 1.0.1 <https://citationstyles.org/authors/> with bibLlatex, since it has the citation style output for nearly all academic journal under the sun, see the Zotero Style Repository <https://www.zotero.org/styles>. If a LaTeX template is not readily available via the editor or the Overleaf gallery, formating the citation output gets tricky. Maybe a fix possible with the BBT add-on for Zotero <https://retorque.re/zotero-better-bibtex/>, but I have yet to try it.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
+\documentclass[english,french,12pt,letterpaper]{article}
+%%DON'T FORGET TO SET THE CORRECT CLASS, looking first at editor guidelines and Overleaf templates <https://www.overleaf.com/latex/templates/tagged/academic-journal>. for publication! Babel language is globally set to French in the options, with local changes to English enabled by commands \foreignlanguage{english}{...}, \selectlanguage{english}, or the \begin{otherlanguage}{english}...\end{otherlanguage} environment. Info on other class options <https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/>.
+
+%----------------------------------------------------------------
+%### Loading Packages ###
+%
+%## Fonts & Encoding Related ##
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage{babel,csquotes} %%is set to French, see babel-french on CTAN for info; invert with English option in documentclass above to globally set to English
+\usepackage{lmodern} %%info at <https://www.tug.org/pracjourn/2006-1/robertson/robertson.pdf>
+\usepackage{textcomp,coloremoji,ulem} %%more symbols and underlining with \uline{}, \uwave{} etc. and strikeout with \sout{}.
+\normalem %%prevents the ulem package of changing \emph{} from italics to underline
+%\usepackage{newtxtext} %%for a Times New Roman text font output. Alternatively compile with XeLaTeX if the appearance is not satisfying, Overleaf says <https://www.overleaf.com/learn/latex/XeLaTeX>.
+
+%## Colors, Boxes & Figures ##
+\usepackage[usenames,dvipsnames,table]{xcolor} %%view the named colours at <https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips>
+\usepackage{fancybox,tcolorbox} %%frames and colour boxes to emphasize text
+\usepackage{float} %%more control on floating the {figure} and {table} environments <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures>
+\usepackage{array,dcolumn,tabularx,multirow,longtable,booktabs} %%more control of the {tabular} and {array} environments explained at <https://www.overleaf.com/learn/latex/Tables#Reference_guide>
+\usepackage{graphicx,wrapfig,caption,sidecap} %%Overleaf help for figures says <https://www.overleaf.com/learn/latex/Inserting_Images>. Compiling with pdfLaTeX supports .pdf, .png, .jpg and .eps files, the latter being converted to .pdf. When using Inkscape, the native vector format is .svg, but export in .eps+LaTeX and .pdf+LaTeX can be done as follows <http://ctan.mirror.rafal.ca/info/svg-inkscape/InkscapePDFLaTeX.pdf>, more info here <https://www.overleaf.com/blog/25-beautiful-graphs-how-to-turn-an-inkscape-drawing-into-an-editable-latex-document>. A dedicated svg package <https://www.ctan.org/pkg/svg> adds the commands \includeinkscape and \includesvg, where the former imports the .pdf_tex file and the latter automates further, but needing a --shell-escape flag for compilation. Conversion to TikZ code <https://github.com/kjellmf/svg2tikz> also possible!
+
+%## Maths & Physics ##
+\usepackage{amsmath,amsthm,amssymb} %%from the American Mathematical Society
+%\usepackage{cancel}
+%\usepackage[all]{xy}
+\usepackage{siunitx} %%language-specific with scientific and complex number notation as well as measurement and uncertainty formatting according to the Système International d’Unités (SI); documentation at <http://tug.ctan.org/macros/latex/exptl/siunitx/siunitx.pdf>
+\usepackage{physics} %%documentation at <http://ctan.mirror.colo-serv.net/macros/latex/contrib/physics/physics.pdf>
+%\usepackage{tikz-network} %%crystal lattice drawing
+%\usepackage{tikz-optics} %%optical drawing
+%\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing, but needs compiler setting LaTeX(outputting .dvi files) instead of pdfLaTeX as it relies on PostScript, more info at <https://www.overleaf.com/learn/latex/Choosing_a_LaTeX_Compiler> & <http://tug.org/PSTricks/main.cgi?file=pdf/pdfoutput#autopstpdf>
+%\usepackage{tikzorbital,chemfig,chemmacros,mhchem} %%orbital, hybrid and molecule drawings/diagrams as well as notation of chemical formulae and even standard Risk and Safety phrases
+%\usepackage{pstricks,pst-labo} %%laboratory chemical glassware, see PSTricks comment above
+%\usepackage{pstricks,dsptricks,pst-sigsys} %%signal processing plots/drawings, see PSTricks comment above
+%\usepackage[americanvoltages,americancurrents]{circuitikz} %%electrical circuit drawing
+%\usetikzlibrary{babel} %%needed for electrical circuit drawing when running babel-french
+%\usepackage{quantikz} %%quantum circuit drawing
+
+%## Miscellaneous Nice Tools ##
+\usepackage{ccicons} %%Creative commons icons <http://muug.ca/mirror/ctan/fonts/ccicons/ccicons.pdf> for attribution according to the license <https://wiki.creativecommons.org/wiki/Best_practices_for_attribution>. Search for reusable content at <https://search.creativecommons.org/>
+\usepackage[final]{showkeys,lipsum,marginnote,todonotes} %%the [final] option is for the {showkeys}, change to [draft] to see the ref keys.
+%\usepackage{pgfplots,tikz,animate,media9} %%graphs, drawing & multimedia tools
+%\usepackage{pythontex} %%Python code executable in LaTeX! info article <https://doi.org/10.1088/1749-4699/8/1/014010> with documentation on CTAN as usual.
+
+%## Bibliography ##
+%\usepackage[backend=biber,sorting=none]{biblatex} %%Overleaf explains <https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX>,<https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex> with more templates at <https://www.overleaf.com/latex/templates/tagged/bibliography>. Documentation at <https://www.ctan.org/pkg/biblatex>.
+%\addbibresource{} %%import your bibliography file in bibLAtex format by creating a new file (top left icon) from Zotero, linking first your account through the settings page if needed. The bibLAtex file name goes in the curly brackets with the .bib extension explicitely.
+
+%## Hyperlinks ##
+\usepackage{hyperref} %%\href{address}{hypertext} to link the hypertext and \url{adress} to link the displayed web address.
+\usepackage{xurl,doi} %%allows more line breaks in URL and automatically resolves object identifiers doi, arXiv, OCLC (from WorlCat references), etc. For DOI bugs, use \doi{} to generate a proper URL from the DOI publication number.
+
+%## Layout ##
+%%When using classes and templates from academic journals, some of the following packages and configurations could be in conflict, thus comment out as needed. 
+\usepackage[letterpaper,text={7in,9in}]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace} %%more control on line spacing as explained at <https://en.wikibooks.org/wiki/LaTeX/Text_Formatting>
+\usepackage{enumitem} %%commands to change list format, documented at <http://ctan.math.ca/tex-archive/macros/latex/contrib/enumitem/enumitem.pdf> with basic list explanations at <https://www.overleaf.com/learn/latex/Lists>
+%\usepackage{boxedminipage,lscape,multicol,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively.
+
+%%For more packages, search CTAN or browse it by topics. Of interest: <https://www.ctan.org/pkg/latex-tools>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>
+
+%---------------------------------------------------------
+%Configuring the layout and other format setups (most require a package from above)
+%
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\cfoot{-\thepage-} %%page numbering
+%\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages.
+\setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
+%\setlength\parindent{0pt}
+%\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list, remove that option to apply to all 3 basic list types
+\setcounter{equation}{0}
+\captionsetup{  %%format settings for the figure and table captions
+    font=small,
+    labelfont=bf,
+    margin=0.1\textwidth}
+\sisetup{separate-uncertainty=true} %%uncertainty formatting with \pm instead of parentheses() at the end by default.
+\hypersetup{   %%essentially controls the appearance of the hypertext
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue, 
+    urlcolor=blue,
+    bookmarks=true} %%the table of content is stored in the .pdf metadata, this should make it show automatically on the document side in the .pdf reader.
+%\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
+
+%---------------------------------------------------------
+%Defining command shortcuts
+%
+\newcommand{\be}{\begin{equation}} %%for numbered equations, use \[...\] to display without numbering or $...$ to include directly inline. More info at <https://www.overleaf.com/learn/latex/Mathematical_expressions>
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{align}} %%align on &= the equal sign and more generally on the ampersand & character. More info at <https://artofproblemsolving.com/wiki/index.php/LaTeX:Math>
+\newcommand{\eea}{\end{align}}
+\newcommand{\beg}{\begin{gather}} %%gathering equations one below another without aligning. More info at <https://www.overleaf.com/learn/latex/Aligning_equations_with_amsmath>
+\newcommand{\eeg}{\end{gather}}
+\newcommand{ \TLd }[1]{\ensuremath{\mathcal{L}\left[ #1 \right]}}
+\newcommand{ \TLi }[1]{\ensuremath{\mathcal{L}^{-1}\left[ #1 \right]}}
+
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+%TOP MATTER
+%
+%\listoffigures
+%\listoftables
+\title{Examples}
+\author{Claudine Nì. Allen}
+%\thanks{john}
+\date{\today}
+%\maketitle %%Uncomment for title header
+%\begin{titlepage}...\end{titlepage} %%Uncomment and complete for title page
+
+\section{Examples}
+
+\subsection{Including a figure}
+\begin{figure}[h] %%info on [placement specifiers] at <https://www.overleaf.com/learn/latex/Positioning_of_Figures>
+    \centering
+    \includegraphics[width=0.5\textwidth]{} %%the size of the image is set in option
+    \caption{}
+    \label{fig:} %%Cross-referencing info at <https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#Introduction>
+\end{figure}
+\lipsum[1][1] Indeed, figure~\ref{fig:} illustrates this issue.
+
+\subsection{Including a figure with text wrapping around it} %%info on wrapping at <https://www.overleaf.com/learn/latex/Wrapping_text_around_figures>
+\lipsum[1-3]
+\begin{wrapfigure}{r}{0.25\textwidth} %%arguments are {if oneside: l left or r right, if twoside: i inside edge or o outside edge, capitalize the letter to float the figure}{width of figure box}
+    \centering
+    \includegraphics[width=0.25\textwidth]{} %%the size of the image is set in option
+    \caption{}
+    \label{fig:} %%Cross-referencing info at <https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#Introduction>
+\end{wrapfigure}
+
+%\printbibliography[heading=bibintoc] %%The bibliography section name can be changed by adding the argument title={}
+\end{document}
