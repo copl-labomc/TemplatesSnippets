@@ -6,7 +6,7 @@
 %ToDo: 
 % - Cheatsheet for babel-french (see CTAN doc and <https://en.wikibooks.org/wiki/LaTeX/Internationalization#French>,<https://www.overleaf.com/learn/latex/French>) with tools for better French writing (Andidote,GDT,Linguee,Termium,IUPAC gold book, etc.) with its equivalent wikiOMC page (since we are at it, test markdown &/or html conversion utility, pandoc I think it is)
 % - Cheatsheet for SIunitx commands
-% - Cheatsheet for the Physics package bonified with common math, or start by searching a good latex cheatsheet to bonify with Physics package commands. At the top, link to Detexify <http://detexify.kirelabs.org/classify.html>, <https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject>, <https://meta.wikimedia.org/wiki/Help:Displaying_a_formula> & other relevant apps like EquatIO =)
+% - Cheatsheet for the Physics package expanded with common math, or start by searching a good latex cheatsheet to expand with Physics package commands. At the top, link to Detexify <http://detexify.kirelabs.org/classify.html>, <https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject>, <https://meta.wikimedia.org/wiki/Help:Displaying_a_formula> & other relevant apps like EquatIO =)
 % - More examples for most common package uses below
 % - Follow the development of integrating the Citation Style Language (CSL) 1.0.1 <https://citationstyles.org/authors/> with biblatex, since it has the citation style output for nearly all academic journal under the sun, see the Zotero Style Repository <https://www.zotero.org/styles>. If a LaTeX template is not readily available via the editor or the Overleaf gallery, formatting the citation output gets tricky. Maybe a fix possible with the BBT add-on for Zotero <https://retorque.re/zotero-better-bibtex/>, but I have yet to try it.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,7 +30,7 @@
 
 %## Colors, Boxes & Figures ##
 \usepackage[usenames,dvipsnames,table]{xcolor} %%view the named colours at <https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips>
-\usepackage{fancybox,tcolorbox} %%frames and colour boxes to emphasize text
+\usepackage[breakable]{tcolorbox,fancybox} %%frames and colour boxes to emphasize text, some info at <https://en.wikibooks.org/wiki/LaTeX/Boxes#colorbox_and_fcolorbox> and search tcolobox in <http://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex/guide-latex-fr/Archives/guide-latex-fr_V2.pdf>
 \usepackage{float} %%more control on floating the {figure} and {table} environments <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures>
 \usepackage{array,dcolumn,tabularx,multirow,longtable,booktabs} %%more control of the {tabular} and {array} environments explained at <https://www.overleaf.com/learn/latex/Tables#Reference_guide>
 \usepackage{graphicx,wrapfig,caption,sidecap} %%Overleaf help for figures says <https://www.overleaf.com/learn/latex/Inserting_Images>. Compiling with pdfLaTeX supports .pdf, .png, .jpg and .eps files, the latter being converted to .pdf. When using Inkscape, the native vector format is .svg, but export in .eps+LaTeX and .pdf+LaTeX can be done as follows <http://ctan.mirror.rafal.ca/info/svg-inkscape/InkscapePDFLaTeX.pdf>, more info here <https://www.overleaf.com/blog/25-beautiful-graphs-how-to-turn-an-inkscape-drawing-into-an-editable-latex-document>. A dedicated svg package <https://www.ctan.org/pkg/svg> adds the commands \includeinkscape and \includesvg, where the former imports the .pdf_tex file and the latter automates further, but needing a --shell-escape flag for compilation. Conversion to TikZ code <https://github.com/kjellmf/svg2tikz> also possible!
@@ -53,7 +53,7 @@
 
 %## Miscellaneous Nice Tools ##
 \usepackage{ccicons} %%Creative commons icons <http://muug.ca/mirror/ctan/fonts/ccicons/ccicons.pdf> for attribution according to the license <https://wiki.creativecommons.org/wiki/Best_practices_for_attribution>. Search for reusable content at <https://search.creativecommons.org/>
-\usepackage[final]{showkeys,lipsum,marginnote,todonotes} %%the [final] option is for the {showkeys}, change to [draft] to see the ref keys.
+\usepackage[final]{showkeys,lipsum,todonotes} %%the [final] option is for the showkeys package, change to [draft] to see each ref key's label; \lipsum[a-b][c-d] for Lorem Ipsum dummy text paragraph #a-b, line #c-d; standard margin notes with \marginpar{} & colored ones with \todo{}
 %\usepackage{pgfplots,tikz,animate,media9} %%graphs, drawing & multimedia tools
 %\usepackage{pythontex} %%Python code executable in LaTeX! info article <https://doi.org/10.1088/1749-4699/8/1/014010> with documentation on CTAN as usual.
 
@@ -69,7 +69,7 @@
 %%When using classes and templates from academic journals, some of the following packages and configurations could be in conflict, thus comment out as needed. 
 \usepackage[letterpaper,text={7in,9in}]{geometry}
 \usepackage{fancyhdr}
-\usepackage{setspace} %%more control on line spacing as explained at <https://en.wikibooks.org/wiki/LaTeX/Text_Formatting>
+\usepackage{setspace} %%more control on line spacing as explained at <https://en.wikibooks.org/wiki/LaTeX/Text_Formatting>; horizontal math spacing guide at <https://www.overleaf.com/learn/latex/Spacing_in_math_mode#Reference_guide>; units relative to character size in the current font: ex - height of an 'x', em - width of an 'M' (uppercase)
 \usepackage{enumitem} %%commands to change list format, documented at <http://ctan.math.ca/tex-archive/macros/latex/contrib/enumitem/enumitem.pdf> with basic list explanations at <https://www.overleaf.com/learn/latex/Lists>
 %\usepackage{epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively.
 
@@ -82,11 +82,11 @@
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \cfoot{-\thepage-} %%page numbering
-%\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages.
+%\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages, more info at <https://en.wikibooks.org/wiki/LaTeX/Footnotes_and_Margin_Notes>
 \setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
 %\setlength\parindent{0pt}
 %\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list, remove that option to apply to all 3 basic list types
-\setcounter{equation}{0}
+\setcounter{equation}{0} %%ensure resetting of the equation counter, more info at <https://en.wikibooks.org/wiki/LaTeX/Counters>
 \captionsetup{  %%format settings for the figure and table captions
     font=small,
     labelfont=bf,
