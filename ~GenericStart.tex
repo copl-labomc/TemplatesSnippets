@@ -4,26 +4,27 @@
 %Écrit par Claudine Nì. Allen			               
 %Dernière modification : 7 mars 2020
 %ToDo: 
-% - Cheatsheet for babel-french and SIunitx commands to add to this repo
+% - Cheatsheet for babel-french (see also <https://en.wikibooks.org/wiki/LaTeX/Internationalization#French>,<https://www.overleaf.com/learn/latex/French>) and SIunitx commands to add to this repo
 % - More examples for most common package uses below
 % - Follow the development of integrating the Citation Style Language (CSL) 1.0.1 <https://citationstyles.org/authors/> with bibLlatex, since it has the citation style output for nearly all academic journal under the sun, see the Zotero Style Repository <https://www.zotero.org/styles>. If a LaTeX template is not readily available via the editor or the Overleaf gallery, formating the citation output gets tricky. Maybe a fix possible with the BBT add-on for Zotero <https://retorque.re/zotero-better-bibtex/>, but I have yet to try it.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
 \documentclass[english,french,12pt,letterpaper]{article}
-%%DON'T FORGET TO SET THE CORRECT CLASS, looking first at editor guidelines and Overleaf templates <https://www.overleaf.com/latex/templates/tagged/academic-journal>. for publication! Babel language is globally set to French in the options, with local changes to English enabled by commands \foreignlanguage{english}{...}, \selectlanguage{english}, or the \begin{otherlanguage}{english}...\end{otherlanguage} environment. Info on other class options <https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/>.
+%%DON'T FORGET TO SET THE CORRECT CLASS, looking first at editor guidelines and Overleaf templates <https://www.overleaf.com/latex/templates/tagged/academic-journal> for publication! Babel language is globally set to French in the options, with local changes to English enabled by commands \foreignlanguage{english}{...}, \selectlanguage{english}, or the \begin{otherlanguage}{english}...\end{otherlanguage} environment. Info on other class options <https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/>.
 
 %----------------------------------------------------------------
 %### Loading Packages ###
 %
-%## Fonts & Encoding Related ##
-\usepackage[utf8]{inputenc} 
-\usepackage[T1]{fontenc}
-\usepackage{babel,csquotes} %%is set to French, see babel-french on CTAN for info; invert with English option in documentclass above to globally set to English
-\usepackage{lmodern} %%info at <https://www.tug.org/pracjourn/2006-1/robertson/robertson.pdf>
-\usepackage{textcomp,coloremoji,ulem} %%more symbols and underlining with \uline{}, \uwave{} etc. and strikeout with \sout{}.
+%## Encoding, Typesetting, Fonts & Language ##
+\usepackage[utf8]{inputenc} %%cross-platform & international keyboard input, see <https://www.overleaf.com/learn/latex/French#Input_encoding>
+\usepackage[T1]{fontenc} %%international font encoding output, see <https://www.overleaf.com/learn/latex/French#Font_encoding>
+\usepackage{babel} %%is set to French, see babel-french on CTAN for info; invert with English option in documentclass above to globally set to English
+\usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters <https://www.tug.org/pracjourn/2006-1/robertson/robertson.pdf> & quotes with \textquote{} and the \begin{displayquote}...\end{displayquote} environment
+\usepackage{amsfonts,eucal,mathrsfs} %%typesetting math <http://www.peteryu.ca/tutorials/publishing/latex_math_script_styles> and more extensively <https://ctan.org/pkg/comprehensive?lang=en> that may require further packages
+\usepackage{textcomp,coloremoji,ulem} %%more symbols as well as underlining with \uline{}, \uwave{} etc. and strikeout with \sout{}
 \normalem %%prevents the ulem package of changing \emph{} from italics to underline
-%\usepackage{newtxtext} %%for a Times New Roman text font output. Alternatively compile with XeLaTeX if the appearance is not satisfying, Overleaf says <https://www.overleaf.com/learn/latex/XeLaTeX>.
+%\usepackage{newtxtext} %%for a Times New Roman text font output. Alternatively compile with XeLaTeX if the appearance is not satisfying, Overleaf says <https://www.overleaf.com/learn/latex/XeLaTeX>
 
 %## Colors, Boxes & Figures ##
 \usepackage[usenames,dvipsnames,table]{xcolor} %%view the named colours at <https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips>
@@ -34,11 +35,11 @@
 
 %## Maths & Physics ##
 \usepackage{amsmath,amsthm,amssymb} %%from the American Mathematical Society
-%\usepackage{cancel}
-%\usepackage[all]{xy}
+%\usepackage{cancel,trfsigns} %%math simplifications & signs for transforms respectively
+%\usepackage[all]{xy} %%nice math diagrams
 \usepackage{siunitx} %%language-specific with scientific and complex number notation as well as measurement and uncertainty formatting according to the Système International d’Unités (SI); documentation at <http://tug.ctan.org/macros/latex/exptl/siunitx/siunitx.pdf>
 \usepackage{physics} %%documentation at <http://ctan.mirror.colo-serv.net/macros/latex/contrib/physics/physics.pdf>
-%\usepackage{tikz-network} %%crystal lattice drawing
+%\usepackage{tikz-network} %%crystal lattice & complex networks drawing
 %\usepackage{tikz-optics} %%optical drawing
 %\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing, but needs compiler setting LaTeX(outputting .dvi files) instead of pdfLaTeX as it relies on PostScript, more info at <https://www.overleaf.com/learn/latex/Choosing_a_LaTeX_Compiler> & <http://tug.org/PSTricks/main.cgi?file=pdf/pdfoutput#autopstpdf>
 %\usepackage{tikzorbital,chemfig,chemmacros,mhchem} %%orbital, hybrid and molecule drawings/diagrams as well as notation of chemical formulae and even standard Risk and Safety phrases
@@ -68,7 +69,7 @@
 \usepackage{fancyhdr}
 \usepackage{setspace} %%more control on line spacing as explained at <https://en.wikibooks.org/wiki/LaTeX/Text_Formatting>
 \usepackage{enumitem} %%commands to change list format, documented at <http://ctan.math.ca/tex-archive/macros/latex/contrib/enumitem/enumitem.pdf> with basic list explanations at <https://www.overleaf.com/learn/latex/Lists>
-%\usepackage{boxedminipage,lscape,multicol,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively.
+%\usepackage{epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively.
 
 %%For more packages, search CTAN or browse it by topics. Of interest: <https://www.ctan.org/pkg/latex-tools>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>
 
@@ -98,7 +99,7 @@
 %\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
 
 %---------------------------------------------------------
-%Defining command shortcuts
+%Defining command shortcuts & macros
 %
 \newcommand{\be}{\begin{equation}} %%for numbered equations, use \[...\] to display without numbering or $...$ to include directly inline. More info at <https://www.overleaf.com/learn/latex/Mathematical_expressions>
 \newcommand{\ee}{\end{equation}}
@@ -106,8 +107,12 @@
 \newcommand{\eea}{\end{align}}
 \newcommand{\beg}{\begin{gather}} %%gathering equations one below another without aligning. More info at <https://www.overleaf.com/learn/latex/Aligning_equations_with_amsmath>
 \newcommand{\eeg}{\end{gather}}
-\newcommand{ \TLd }[1]{\ensuremath{\mathcal{L}\left[ #1 \right]}}
-\newcommand{ \TLi }[1]{\ensuremath{\mathcal{L}^{-1}\left[ #1 \right]}}
+\DeclareMathOperator{\TLd}[1]{\ensuremath{\mathscr{L}\left[#1\right]}} %%Laplace transform \TLd{}
+\DeclareMathOperator{\TLi}[1]{\ensuremath{\mathscr{L}^{-1}\left[#1\right]}} %Inverse Laplace transform \TLi{}
+\DeclareMathOperator{\TFd}[1]{\ensuremath{\mathscr{F}\left[#1\right]}} %%Fourier transform \TFd{}
+\DeclareMathOperator{\TFi}[1]{\ensuremath{\mathscr{F}^{-1}\left[#1\right]}} %%Inverse Fourier transform \TFi{}
+\renewcommand*{\Re}{\mathop{}\!\mathfrak{Re}} %%Real part \Re redefined with 2 characters fraktur typesetting, original 1 character version stored in \real by the physics package
+\renewcommand*{\Im}{\mathop{}\!\mathfrak{Im}} %%Imaginary part \Im redefined with 2 characters fraktur typesetting, original 1 character version stored in \imaginary by the physics package
 
 %---------------------------------------------------------
 \begin{document}
