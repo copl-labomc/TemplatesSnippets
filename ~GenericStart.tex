@@ -1,16 +1,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Preamble optimized for optical material research and training. It is heavily commented to help new users, the specific templates in this repository have this preamble with less comments. Some examples of package uses are provided in the document environment, modify or remove as needed. The same preamble lightly commented with the most useful is in the ~GenericPreamble file of this repository. 
+%~GenericStart.tex : Preamble optimized for optical material research and training. It is heavily commented to help new users, the specific templates in this repository have this preamble with less comments. Some examples of package uses are provided in the document environment, modify or remove as needed. The same preamble lightly commented with the most useful is in the ~GenericPreamble file of this repository. 
 %------------------------------------------------------------------
-%Écrit par Claudine Nì. Allen			               
+%Écrit par Claudine Nì. Allen
+%Contributions par -
 %Dernière modification : 8 mars 2020
 %ToDo: 
 % - Complete & add examples for most common package uses in the document environment - main text
-% - Complete commands for FRONT MATTER, TOP MATTER, sectioning in BODY MATTER & BACK MATTER 
-% - Cheatsheet for babel-french (see CTAN doc and <https://en.wikibooks.org/wiki/LaTeX/Internationalization#French>,<https://www.overleaf.com/learn/latex/French>) with tools for better French writing (Andidote,GDT,Linguee,Termium,IUPAC gold book, etc.) with its equivalent wikiOMC page (since we are at it, test markdown &/or html conversion utility, pandoc I think it is)
+% - Complete commands for FRONT MATTER, TOP MATTER, sectioning in BODY MATTER & BACK MATTER
+% - Pour la notation des transformations de Fourier & Laplace, trancher entre \mathcal (naturel LaTeX & BlaTeX en ligne) et \mathscr (Unicode standard ISO, donc probable à l'écrit) en discutant avec JGenest, MDesjardins & Théoriciens
+% - Cheatsheet for babel-french (see CTAN doc and <https://en.wikibooks.org/wiki/LaTeX/Internationalization#French>,<https://www.overleaf.com/learn/latex/French>) with tools for better French writing (Thesaurus-Synonyms-Dico resources especially directly through GDocs & friends (first draft BODY MATTER with LaTeX code right there),Antidote,GDT,Linguee,Termium,IUPAC gold book, etc.) with its equivalent wikiOMC page (since we are at it, test markdown &/or html conversion utility, pandoc I think it is)
 % - Cheatsheet for SIunitx commands
 % - Cheatsheet for the Physics package expanded with common math, or start by searching a good latex cheatsheet to expand with Physics package commands. At the top, link to Detexify <http://detexify.kirelabs.org/classify.html>, <https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject>, <https://meta.wikimedia.org/wiki/Help:Displaying_a_formula> & other relevant apps like EquatIO =)
 % - Contribute to the LaTeX wikibook with a bit more info on fancybox & tcolorbox packages, so I can link to it with examples here instead of making a cheatsheet!
 % - Follow the development of integrating the Citation Style Language (CSL) 1.0.1 <https://citationstyles.org/authors/> with biblatex, since it has the citation style output for nearly all academic journal under the sun, see the Zotero Style Repository <https://www.zotero.org/styles>. If a LaTeX template is not readily available via the editor or the Overleaf gallery, formatting the citation output gets tricky. Maybe a fix possible with the BBT add-on for Zotero <https://retorque.re/zotero-better-bibtex/>, but I have yet to try it.
+% - Last but not least, once all this is taken care of, start documenting the GitHub repo read.me and wiki including among other things the following LaTeX resources that should also be left in this header here <https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes>,<https://www.overleaf.com/learn/latex/Tutorials>,<https://en.wikibooks.org/wiki/LaTeX>,<https://artofproblemsolving.com/wiki/index.php/LaTeX>,<http://detexify.kirelabs.org/classify.html>,<https://www.tutorialspoint.com/tex_commands/index.htm>,<https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject>, <https://meta.wikimedia.org/wiki/Help:Displaying_a_formula>
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
@@ -75,6 +78,7 @@
 \usepackage{fancyhdr}
 \usepackage{setspace} %%more control on line spacing as explained at <https://en.wikibooks.org/wiki/LaTeX/Text_Formatting>; horizontal math spacing guide at <https://www.overleaf.com/learn/latex/Spacing_in_math_mode#Reference_guide>; units relative to character size in the current font: ex - height of an 'x', em - width of an 'M' (uppercase)
 \usepackage{enumitem} %%commands to change list format, documented at <http://ctan.math.ca/tex-archive/macros/latex/contrib/enumitem/enumitem.pdf> with basic list explanations at <https://www.overleaf.com/learn/latex/Lists>
+\usepackage{import} %%\import{_path_}{_filename_} to include other project files in the compiled main file
 %\usepackage{epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively.
 
 %%For more packages, search CTAN or browse it by topics. Of interest: <https://www.ctan.org/pkg/latex-tools>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>
@@ -113,10 +117,14 @@
 \newcommand{\eea}{\end{align}}
 \newcommand{\beg}{\begin{gather}} %%gathering equations one below another without aligning. More info at <https://www.overleaf.com/learn/latex/Aligning_equations_with_amsmath>
 \newcommand{\eeg}{\end{gather}}
-\DeclareMathOperator{\TLd}[1]{\ensuremath{\mathscr{L}\left[#1\right]}} %%Laplace transform \TLd{}
-\DeclareMathOperator{\TLi}[1]{\ensuremath{\mathscr{L}^{-1}\left[#1\right]}} %Inverse Laplace transform \TLi{}
-\DeclareMathOperator{\TFd}[1]{\ensuremath{\mathscr{F}\left[#1\right]}} %%Fourier transform \TFd{}
-\DeclareMathOperator{\TFi}[1]{\ensuremath{\mathscr{F}^{-1}\left[#1\right]}} %%Inverse Fourier transform \TFi{}
+\DeclareMathOperator{\TLs}{\mathscr{L}} %%Laplace transform symbol \TLs
+\newcommand{\TLd}[1]{\TLs\!\left[#1\right]} %%Laplace transform operator \TLd{}
+\DeclareMathOperator{\TLsi}{\mathscr{L}^{-1}} %%inverse Laplace transform symbol \TLsi
+\newcommand{\TLi}[1]{\TLsi\!\left[#1\right]} %%inverse Laplace transform operator \TLi{}
+\DeclareMathOperator{\TFsi}{\mathscr{F}^{-1}} %%inverse Fourier transform \TFsi
+\newcommand{\TFi}[1]{\TFsi\!\left[#1\right]} %%inverse Fourier transform operator \TFi{}
+\DeclareMathOperator{\TFs}{\mathscr{F}} %%Fourier transform \TFs
+\newcommand{\TFd}[1]{\TFs\!\left[#1\right]} %%Fourier transform operator \TFd{}
 \renewcommand*{\Re}{\mathop{}\!\mathfrak{Re}} %%Real part \Re redefined with 2 characters fraktur typesetting, original 1 character version stored in \real by the physics package
 \renewcommand*{\Im}{\mathop{}\!\mathfrak{Im}} %%Imaginary part \Im redefined with 2 characters fraktur typesetting, original 1 character version stored in \imaginary by the physics package
 
