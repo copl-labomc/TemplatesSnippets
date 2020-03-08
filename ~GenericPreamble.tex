@@ -1,0 +1,148 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%~GenericPreamble.tex : Preamble optimized for optical material research and training duplicated from ~GenericStart, but with reduced commenting and no BODY MATTER examples.
+%------------------------------------------------------------------
+%Écrit par Claudine Nì. Allen
+%Contributions par -
+%Dernière modification : 8 mars 2020
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
+\documentclass[english,french,12pt,letterpaper]{}
+%%DON'T FORGET TO SET THE CORRECT CLASS, looking first at editor guidelines and Overleaf templates <https://www.overleaf.com/latex/templates/tagged/academic-journal> for publication!
+
+%----------------------------------------------------------------
+%### Loading Packages ###
+%
+%## Encoding, Typography & Language ##
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel} %%is globally set to French, switch to English by inverting order in the '\documentclass' options
+\usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters & quotes with '\textquote{}' and the '\begin{displayquote}...\end{displayquote}' environment
+\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%math fonts and more symbols, extensively listed and beyond in the 'latex-AllSymbolList.pdf' of this repository
+\usepackage{ulem} %%underlining with '\uline{}', '\uwave{}' etc. and strikeout with '\sout{}'
+\normalem
+%\usepackage{newtxtext} %%for a Times New Roman text font output.
+
+%## Colors, Boxes & Figures ##
+\usepackage[usenames,dvipsnames,table]{xcolor} %%view the named colours at <https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips>
+\usepackage{fancybox} %%more framed boxes
+\usepackage[breakable]{tcolorbox} %%coloured boxes with optional title
+\usepackage{float} %%more control on any floating environments 
+\usepackage{array,dcolumn,tabularx,multirow,longtable,booktabs} %%more control of 'tabular' and 'array' environments
+\usepackage{graphicx,wrapfig,caption,sidecap} %% Compiling with 'pdfLaTeX' supports .pdf,.pdf_tex .png, .jpg and .eps(indirectly) files. %Use '\includeinkscape' for .pdf_tex files exported from Inkscape or convert directly to TiKZ code with the 'svg2tikz' extension.
+
+%## Maths & Physics ##
+\usepackage{amsmath,amsthm,amssymb}
+%\usepackage{cancel,trfsigns} %%math simplifications & signs for transforms respectively
+%\usepackage[all]{xy} %%nice math diagrams
+\usepackage{siunitx} %%scientific & complex numbers, measurement & uncertainty, see 'latex-SIunitx.pdf' in this repo
+\usepackage{physics} %%typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in this repository
+%\usepackage{tikz-network} %%crystal lattice & complex networks drawing
+%\usepackage{tikz-optics} %%optical drawing
+%\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing
+%\usepackage{tikzorbital,chemfig,chemmacros,mhchem} %%chemical drawings/diagrams and formulae & safety
+%\usepackage{pstricks,pst-labo} %%laboratory chemical glassware
+%\usepackage{pstricks,dsptricks,pst-sigsys} %%signal processing plots/drawings
+%\usepackage[americanvoltages,americancurrents]{circuitikz} %%electrical circuit drawing
+%\usetikzlibrary{babel} %%needed for electrical circuit drawing when running babel-french
+%\usepackage{quantikz} %%quantum circuit drawing
+
+%## Miscellaneous Nice Tools ##
+\usepackage{ccicons} %%Creative Commons icons, reusable content at <https://search.creativecommons.org/>
+%\usepackage[draft]{showkeys} %%uncomment to display the label of each '\ref' key in the document output
+%\setlength{\marginparwidth}{2cm} %%uncomment to force a temporary resolution of 'todonotes' margin warning
+\usepackage{lipsum,todonotes} %%'\lipsum[_a-b_][_c-d_]' for dummy text paragraph #_a-b_, line #_c-d_ ; standard margin notes with '\marginpar{}' & colored ones with '\todo{}'
+%\usepackage{media9,animate,tikz,pgfplots} %%tools for multimedia, drawing and graphs
+%\usepackage{pythontex} %%Python code executable in LaTeX!
+
+%## Bibliography ##
+%\usepackage[backend=biber,sorting=none]{biblatex} %%see 'cheatsheet-BibLaTeX.tex' in this repository
+%\addbibresource{} %%import your .bib file in bibLAtex format from Zotero
+
+%## Hyperlinks ##
+\usepackage{hyperref} %%'\href{_URL_}{_hypertext_}' to link the hypertext & '\url{_URL_}' to link the displayed web address, each internal '~\ref{_label_}' is hyperlinked with '\hyperref[_label_]{_hypertext_}' enabling hypertext instead.
+\usepackage{xurl,doi} %%automatically resolves object identifiers such as IDs from doi, arXiv, OCLC, etc., use '\doi{}' if the former bugs.
+
+%## Layout ##
+%%Watch for conflicts with the overall document class.
+\usepackage[letterpaper,text={7in,9in}]{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace} %%interline spacing tools ; units relative to current font: ex - height of an 'x', em - width of an 'M' (uppercase)
+\usepackage{enumitem} %%tools to change list format
+\usepackage{import}
+%\usepackage{epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
+
+%---------------------------------------------------------
+%### Configuring the layout and other format setups ###
+%
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\cfoot{-\thepage-} %%bottom center page numbering
+%\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages
+\setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
+%\setlength\parindent{0pt}
+%\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list
+\setcounter{equation}{0} %%ensure resetting of the equation counter
+\captionsetup{  %%for figure and table captions
+    font=small,
+    labelfont=bf,
+    margin=0.1\textwidth}
+\sisetup{separate-uncertainty=true} %for SIunitx package
+\hypersetup{   %%for hyperref package
+    breaklinks=true,
+    linktocpage=true,
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue}
+%\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
+
+%---------------------------------------------------------
+%### Defining command shortcuts & macros ###
+%
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{align}} %%align on &= the equal sign and more generally on the ampersand & character
+\newcommand{\eea}{\end{align}}
+\newcommand{\beg}{\begin{gather}}
+\newcommand{\eeg}{\end{gather}}
+\DeclareMathOperator{\TLs}{\mathscr{L}} %%Laplace transform symbol \TLs
+\newcommand{\TLd}[1]{\TLs\!\left[#1\right]} %%Laplace transform operator \TLd{}
+\DeclareMathOperator{\TLsi}{\mathscr{L}^{-1}} %%inverse Laplace transform symbol \TLsi
+\newcommand{\TLi}[1]{\TLsi\!\left[#1\right]} %%inverse Laplace transform operator \TLi{}
+\DeclareMathOperator{\TFsi}{\mathscr{F}^{-1}} %%inverse Fourier transform \TFsi
+\newcommand{\TFi}[1]{\TFsi\!\left[#1\right]} %%inverse Fourier transform operator \TFi{}
+\DeclareMathOperator{\TFs}{\mathscr{F}} %%Fourier transform \TFs
+\newcommand{\TFd}[1]{\TFs\!\left[#1\right]} %%Fourier transform operator \TFd{}
+\renewcommand*{\Re}{\mathop{}\!\mathfrak{Re}} %%Real part \Re redefined with 2 characters fraktur typesetting
+\renewcommand*{\Im}{\mathop{}\!\mathfrak{Im}} %%Imaginary part \Im redefined with 2 characters fraktur typesetting
+
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+%
+%------ TOP MATTER ------%
+%
+\title{}
+\author{}
+%\thanks{}
+%\date{\today}
+%\maketitle %%Uncomment for title header
+%\begin{titlepage}...\end{titlepage} %%Uncomment and complete for title page
+
+%------ FRONT MATTER ------%
+%
+%\listoffigures
+%\listoftables
+
+%------ BODY MATTER ------%
+%%document structure with '\chapter', '\section', '\subsection', '\paragraph'... (to complete)
+%%'\import{_path_}{_filename_}' to include other files in the compilation
+
+%------ BACK MATTER  ------%
+%
+%\printbibliography[heading=bibintoc]
+
+\end{document}

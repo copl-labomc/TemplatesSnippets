@@ -1,16 +1,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%~GenericStart.tex : Preamble optimized for optical material research and training. It is heavily commented to help new users, the specific templates in this repository have this preamble with less comments. Some examples of package uses are provided in the document environment, modify or remove as needed. The same preamble lightly commented with the most useful is in the ~GenericPreamble file of this repository. 
+%~GenericStart.tex : Preamble optimized for optical material research and training. It is heavily commented to help new users, the specific templates in this repository have this preamble with less comments. Some examples of package uses are provided in the document BODY MATTER, modify or remove as needed. The same preamble lightly commented with the most useful is in the ~GenericPreamble file of this repository. 
 %------------------------------------------------------------------
 %Écrit par Claudine Nì. Allen
 %Contributions par -
 %Dernière modification : 8 mars 2020
 %ToDo: 
+% - Fix links to CTAN documentation to get the dynamic address, hence mirror independent
 % - Complete & add examples for most common package uses in the document environment - main text
 % - Complete commands for FRONT MATTER, TOP MATTER, sectioning in BODY MATTER & BACK MATTER
+% - Add missing 'quotes' for code and approximate consistence using Markdown in comments
 % - Pour la notation des transformations de Fourier & Laplace, trancher entre \mathcal (naturel LaTeX & BlaTeX en ligne) et \mathscr (Unicode standard ISO, donc probable à l'écrit) en discutant avec JGenest, MDesjardins & Théoriciens
 % - Cheatsheet for babel-french (see CTAN doc and <https://en.wikibooks.org/wiki/LaTeX/Internationalization#French>,<https://www.overleaf.com/learn/latex/French>) with tools for better French writing (Thesaurus-Synonyms-Dico resources especially directly through GDocs & friends (first draft BODY MATTER with LaTeX code right there),Antidote,GDT,Linguee,Termium,IUPAC gold book, etc.) with its equivalent wikiOMC page (since we are at it, test markdown &/or html conversion utility, pandoc I think it is)
 % - Cheatsheet for SIunitx commands, explain unbreakable spaces and this package avoid forgetting lots of those on top of proper formatting.
 % - Cheatsheet for the Physics package expanded with common math, or start by searching a good latex cheatsheet to expand with Physics package commands. At the top, link to Detexify <http://detexify.kirelabs.org/classify.html>, <https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject>, <https://meta.wikimedia.org/wiki/Help:Displaying_a_formula> & other relevant apps like EquatIO =)
+% - Find/make a cheatsheet for page layout diagram with commands & spacing commands & relative units (absolute ones in footnote)?
 % - Contribute to the LaTeX wikibook with a bit more info on fancybox & tcolorbox packages, so I can link to it with examples here instead of making a cheatsheet!
 % - Follow the development of integrating the Citation Style Language (CSL) 1.0.1 <https://citationstyles.org/authors/> with biblatex, since it has the citation style output for nearly all academic journal under the sun, see the Zotero Style Repository <https://www.zotero.org/styles>. If a LaTeX template is not readily available via the editor or the Overleaf gallery, formatting the citation output gets tricky. Maybe a fix possible with the BBT add-on for Zotero <https://retorque.re/zotero-better-bibtex/>, but I have yet to try it.
 % - Last but not least, once all this is taken care of, start documenting the GitHub repo read.me and wiki including among other things the following LaTeX resources that should also be left in this header here <https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes>,<https://www.overleaf.com/learn/latex/Tutorials>,<https://en.wikibooks.org/wiki/LaTeX>,<https://artofproblemsolving.com/wiki/index.php/LaTeX>,<http://detexify.kirelabs.org/classify.html>,<https://www.tutorialspoint.com/tex_commands/index.htm>,<https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject>, <https://meta.wikimedia.org/wiki/Help:Displaying_a_formula>
@@ -28,25 +31,25 @@
 \usepackage[T1]{fontenc} %%international font encoding output, see <https://www.overleaf.com/learn/latex/French#Font_encoding>
 \usepackage{babel} %%is set to French, see babel-french on CTAN for info; invert with English option in documentclass above to globally set to English
 \usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters <https://www.tug.org/pracjourn/2006-1/robertson/robertson.pdf> & quotes with \textquote{} and the \begin{displayquote}...\end{displayquote} environment
-\usepackage{amsfonts,eucal,mathrsfs} %%typesetting math <http://www.peteryu.ca/tutorials/publishing/latex_math_script_styles> and more extensively <https://ctan.org/pkg/comprehensive?lang=en> that may require further packages
-\usepackage{textcomp,ulem} %%more symbols as well as underlining with \uline{}, \uwave{} etc. and strikeout with \sout{} ; N.B. coloremoji symbol package is not working with pdfLaTeX compilation atm, an issue to follow up.
+\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%typesetting math <http://www.peteryu.ca/tutorials/publishing/latex_math_script_styles> and more symbols, extensively listed, and beyond with further packages, in the 'latex-AllSymbolList.pdf' of this repository ; N.B. coloremoji symbol package is not working with pdfLaTeX compilation atm, an issue to follow up.
+\usepackage{ulem} %%underlining with '\uline{}', '\uwave{}' etc. and strikeout with '\sout{}'
 \normalem %%prevents the ulem package of changing \emph{} from italics to underline
 %\usepackage{newtxtext} %%for a Times New Roman text font output. Alternatively compile with XeLaTeX if the appearance is not satisfying, Overleaf says <https://www.overleaf.com/learn/latex/XeLaTeX>
 
 %## Colors, Boxes & Figures ##
 \usepackage[usenames,dvipsnames,table]{xcolor} %%view the named colours at <https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips>
 \usepackage{fancybox} %%more framed boxes to emphasize text, some info at <https://en.wikibooks.org/wiki/LaTeX/Boxes#colorbox_and_fcolorbox>
-\usepackage[breakable]{tcolorbox} %%coloured boxes, search 'tcolobox' for faster setting in <http://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex/guide-latex-fr/Archives/guide-latex-fr_V2.pdf>
-\usepackage{float} %%more control on floating the {figure} and {table} environments <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures>
-\usepackage{array,dcolumn,tabularx,multirow,longtable,booktabs} %%more control of the {tabular} and {array} environments explained at <https://www.overleaf.com/learn/latex/Tables#Reference_guide>
+\usepackage[breakable]{tcolorbox} %%coloured boxes with optional title, search 'tcolobox' for faster setting in <http://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex/guide-latex-fr/Archives/guide-latex-fr_V2.pdf>
+\usepackage{float} %%more control on any floating environments, such as 'figure' and 'table'  <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures>
+\usepackage{array,dcolumn,tabularx,multirow,longtable,booktabs} %%more control of the 'tabular' and 'array' environments explained at <https://www.overleaf.com/learn/latex/Tables#Reference_guide>
 \usepackage{graphicx,wrapfig,caption,sidecap} %%Overleaf help for figures says <https://www.overleaf.com/learn/latex/Inserting_Images>. Compiling with pdfLaTeX supports .pdf, .png, .jpg and .eps files, the latter being converted to .pdf. When using Inkscape, the native vector format is .svg, but export in .eps+LaTeX and .pdf+LaTeX can be done as follows <http://ctan.mirror.rafal.ca/info/svg-inkscape/InkscapePDFLaTeX.pdf>, more info here <https://www.overleaf.com/blog/25-beautiful-graphs-how-to-turn-an-inkscape-drawing-into-an-editable-latex-document>. A dedicated svg package <https://www.ctan.org/pkg/svg> adds the commands \includeinkscape and \includesvg, where the former imports the .pdf_tex file and the latter automates further, but needing a --shell-escape flag for compilation. Conversion to TikZ code <https://github.com/kjellmf/svg2tikz> also possible!
 
 %## Maths & Physics ##
 \usepackage{amsmath,amsthm,amssymb} %%from the American Mathematical Society
 %\usepackage{cancel,trfsigns} %%math simplifications & signs for transforms respectively
 %\usepackage[all]{xy} %%nice math diagrams
-\usepackage{siunitx} %%language-specific with scientific and complex number notation as well as measurement and uncertainty formatting according to the Système International d’Unités (SI); documentation at <http://tug.ctan.org/macros/latex/exptl/siunitx/siunitx.pdf>
-\usepackage{physics} %%documentation at <http://ctan.mirror.colo-serv.net/macros/latex/contrib/physics/physics.pdf>
+\usepackage{siunitx} %%language-specific with scientific and complex number notation as well as measurement and uncertainty formatting according to the Système International d’Unités (SI); documentation in 'latex-SIunitx.pdf' of this repo
+\usepackage{physics} %%typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in this repository
 %\usepackage{tikz-network} %%crystal lattice & complex networks drawing
 %\usepackage{tikz-optics} %%optical drawing
 %\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing, but needs compiler setting LaTeX(outputting .dvi files) instead of pdfLaTeX as it relies on PostScript, more info at <https://www.overleaf.com/learn/latex/Choosing_a_LaTeX_Compiler> & <http://tug.org/PSTricks/main.cgi?file=pdf/pdfoutput#autopstpdf>
@@ -58,39 +61,39 @@
 %\usepackage{quantikz} %%quantum circuit drawing
 
 %## Miscellaneous Nice Tools ##
-\usepackage{ccicons} %%Creative commons icons <http://muug.ca/mirror/ctan/fonts/ccicons/ccicons.pdf> for attribution according to the license <https://wiki.creativecommons.org/wiki/Best_practices_for_attribution>. Search for reusable content at <https://search.creativecommons.org/> and Google Image search now has copyright metadata enabling filtering by license type.
-\usepackage[final]{showkeys} %%the [final] option is for the showkeys package, change to [draft] to see each ref key's label
+\usepackage{ccicons} %%Creative Commons icons <http://muug.ca/mirror/ctan/fonts/ccicons/ccicons.pdf> for attribution according to the license <https://wiki.creativecommons.org/wiki/Best_practices_for_attribution>. Search for reusable content at <https://search.creativecommons.org/> and Google Image search now has copyright metadata enabling filtering by license type.
+%\usepackage[draft]{showkeys} %%uncomment to display the label of each '\ref' key in the document output
 %\setlength{\marginparwidth}{2cm}
-\usepackage{lipsum,todonotes} %%lipsum[a-b][c-d] for Lorem Ipsum dummy text paragraph #a-b, line #c-d ; standard margin notes with \marginpar{} & colored ones with \todo{} that reguires 2 cm margins(marginparwidth), thus its output may conflict with the geometry package layout options, but we can a force temporary resolution by uncommenting the \setlength at the previous line 
+\usepackage{lipsum,todonotes} %%'\lipsum[_a-b_][_c-d_]' for Lorem Ipsum dummy text paragraph #_a-b_, line #_c-d_ ; standard margin notes with \marginpar{} & colored ones with \todo{} that reguires 2 cm margins(marginparwidth), thus its output may conflict with the geometry package layout options, but we can a force temporary resolution by uncommenting the \setlength at the previous line 
 %\usepackage{media9,animate,tikz,pgfplots} %%tools for multimedia, drawing and graphs. Direct graph export in TikZ code is possible with Geogebra online or apps(!), see <https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_2)%E2%80%94Generating_TikZ_Code_from_GeoGebra>
 %\usepackage{pythontex} %%Python code executable in LaTeX! info article <https://doi.org/10.1088/1749-4699/8/1/014010> with documentation on CTAN as usual.
 
 %## Bibliography ##
-%\usepackage[backend=biber,sorting=none]{biblatex} %%Overleaf explains <https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX>,<https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex> with more templates at <https://www.overleaf.com/latex/templates/tagged/bibliography>. Documentation at <https://www.ctan.org/pkg/biblatex> with a cheatsheet in this repository.
-%\addbibresource{} %%import your bibliography file in bibLAtex format by creating a new file (top left icon) from Zotero, once your account is linked through the settings page. The bibLAtex file name goes in the curly brackets with the .bib extension explicitely.
+%\usepackage[backend=biber,sorting=none]{biblatex} %%Overleaf explains <https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX>,<https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex> with more templates at <https://www.overleaf.com/latex/templates/tagged/bibliography>. Documentation at <https://www.ctan.org/pkg/biblatex>, also with 'cheatsheet-BibLaTeX.tex' in this repository.
+%\addbibresource{} %%import your bibliography file in bibLAtex format by creating a new file (top left icon) from Zotero, once your account is linked through the settings page. The bibLAtex file name goes in the curly brackets with the explicit .bib extension
 
 %## Hyperlinks ##
 \usepackage{hyperref} %%\href{_web address_}{_hypertext_} to link the hypertext and \url{_web address_} to link the displayed web address, the ~\ref{_label_} internal cross-referencing becomes hyperlinked with \hyperref[_label_]{_hypertext_} for hypertext cross-referenced back to that label. N.B. The package loading order may cause bugs as discussed at <https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before>
-\usepackage{xurl,doi} %%allows more line breaks in URL and automatically resolves object identifiers doi, arXiv, OCLC (from WorlCat references), etc. For DOI bugs, use \doi{} to generate a proper URL from the DOI publication number.
+\usepackage{xurl,doi} %%allows more line breaks in URL and automatically resolves object identifiers such as IDs from doi, arXiv, OCLC (from WorlCat references), etc. For DOI bugs, use \doi{} to generate a proper URL from the DOI publication number.
 
 %## Layout ##
-%%When using classes and templates from academic journals, some of the following packages and configurations could be in conflict, thus comment out as needed. 
+%%When using classes and templates with specific format guidelines, especially from academic journals, some of the following packages and configurations could be in conflict, thus comment out as needed. 
 \usepackage[letterpaper,text={7in,9in}]{geometry}
 \usepackage{fancyhdr}
-\usepackage{setspace} %%more control on line spacing as explained at <https://en.wikibooks.org/wiki/LaTeX/Text_Formatting>; horizontal math spacing guide at <https://www.overleaf.com/learn/latex/Spacing_in_math_mode#Reference_guide>; units relative to character size in the current font: ex - height of an 'x', em - width of an 'M' (uppercase)
-\usepackage{enumitem} %%commands to change list format, documented at <http://ctan.math.ca/tex-archive/macros/latex/contrib/enumitem/enumitem.pdf> with basic list explanations at <https://www.overleaf.com/learn/latex/Lists>
+\usepackage{setspace} %%interline spacing tools explained at <https://en.wikibooks.org/wiki/LaTeX/Text_Formatting>; horizontal math spacing guide at <https://www.overleaf.com/learn/latex/Spacing_in_math_mode#Reference_guide>; units relative to character size in the current font: ex - height of an 'x', em - width of an 'M' (uppercase)
+\usepackage{enumitem} %%commands to change list format, documented at <http://mirrors.ctan.org/macros/latex/contrib/enumitem/enumitem.pdf> with basic list explanations at <https://www.overleaf.com/learn/latex/Lists>
 \usepackage{import} %%\import{_path_}{_filename_} to include other project files in the compiled main file
 %\usepackage{epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively.
 
-%%For more packages, search CTAN or browse it by topics. Of interest: <https://www.ctan.org/pkg/latex-tools>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>
+%%For more packages, search CTAN or browse it by topics. Also of interest: <https://www.ctan.org/pkg/latex-tools>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks> 
 
 %---------------------------------------------------------
-%Configuring the layout and other format setups (most require a package from above)
+%### Configuring the layout and other format setups ### (most require a package from above)
 %
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\cfoot{-\thepage-} %%page numbering
+\cfoot{-\thepage-} %%bottom center page numbering
 %\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages, more info at <https://en.wikibooks.org/wiki/LaTeX/Footnotes_and_Margin_Notes>
 \setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
 %\setlength\parindent{0pt}
@@ -112,7 +115,7 @@
 %\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
 
 %---------------------------------------------------------
-%Defining command shortcuts & macros
+%### Defining command shortcuts & macros ###
 %
 \newcommand{\be}{\begin{equation}} %%for numbered equations, use \[...\] to display without numbering or $...$ to include directly inline. More info at <https://www.overleaf.com/learn/latex/Mathematical_expressions>
 \newcommand{\ee}{\end{equation}}
@@ -134,17 +137,23 @@
 %---------------------------------------------------------
 \begin{document}
 %---------------------------------------------------------
-%TOP MATTER
 %
-%\listoffigures
-%\listoftables
+%------ TOP MATTER ------%
+%
 \title{Examples}
 \author{Claudine Nì. Allen}
-%\thanks{john}
+%\thanks{}
 \date{\today}
 %\maketitle %%Uncomment for title header
 %\begin{titlepage}...\end{titlepage} %%Uncomment and complete for title page
 
+%------ FRONT MATTER ------%
+%
+%\listoffigures
+%\listoftables
+
+%------ BODY MATTER ------%
+%
 \section{Overleaf basic template with explanations}
 See \url{https://www.overleaf.com/docs?template=overleaf&rich_text=false}, part of a large \href{https://www.overleaf.com/latex/templates}{template library} opening directly in Overleaf. 
 
@@ -168,5 +177,8 @@ See \url{https://www.overleaf.com/docs?template=overleaf&rich_text=false}, part 
     \label{fig:} %%Cross-referencing info at <https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing#Introduction>
 \end{wrapfigure}
 
+%------ BACK MATTER  ------%
+%
 %\printbibliography[heading=bibintoc] %%The bibliography section name can be changed by adding the argument title={}
+
 \end{document}
