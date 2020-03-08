@@ -9,7 +9,7 @@
 % - Complete commands for FRONT MATTER, TOP MATTER, sectioning in BODY MATTER & BACK MATTER
 % - Pour la notation des transformations de Fourier & Laplace, trancher entre \mathcal (naturel LaTeX & BlaTeX en ligne) et \mathscr (Unicode standard ISO, donc probable à l'écrit) en discutant avec JGenest, MDesjardins & Théoriciens
 % - Cheatsheet for babel-french (see CTAN doc and <https://en.wikibooks.org/wiki/LaTeX/Internationalization#French>,<https://www.overleaf.com/learn/latex/French>) with tools for better French writing (Thesaurus-Synonyms-Dico resources especially directly through GDocs & friends (first draft BODY MATTER with LaTeX code right there),Antidote,GDT,Linguee,Termium,IUPAC gold book, etc.) with its equivalent wikiOMC page (since we are at it, test markdown &/or html conversion utility, pandoc I think it is)
-% - Cheatsheet for SIunitx commands
+% - Cheatsheet for SIunitx commands, explain unbreakable spaces and this package avoid forgetting lots of those on top of proper formatting.
 % - Cheatsheet for the Physics package expanded with common math, or start by searching a good latex cheatsheet to expand with Physics package commands. At the top, link to Detexify <http://detexify.kirelabs.org/classify.html>, <https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject>, <https://meta.wikimedia.org/wiki/Help:Displaying_a_formula> & other relevant apps like EquatIO =)
 % - Contribute to the LaTeX wikibook with a bit more info on fancybox & tcolorbox packages, so I can link to it with examples here instead of making a cheatsheet!
 % - Follow the development of integrating the Citation Style Language (CSL) 1.0.1 <https://citationstyles.org/authors/> with biblatex, since it has the citation style output for nearly all academic journal under the sun, see the Zotero Style Repository <https://www.zotero.org/styles>. If a LaTeX template is not readily available via the editor or the Overleaf gallery, formatting the citation output gets tricky. Maybe a fix possible with the BBT add-on for Zotero <https://retorque.re/zotero-better-bibtex/>, but I have yet to try it.
@@ -58,10 +58,11 @@
 %\usepackage{quantikz} %%quantum circuit drawing
 
 %## Miscellaneous Nice Tools ##
-\usepackage{ccicons} %%Creative commons icons <http://muug.ca/mirror/ctan/fonts/ccicons/ccicons.pdf> for attribution according to the license <https://wiki.creativecommons.org/wiki/Best_practices_for_attribution>. Search for reusable content at <https://search.creativecommons.org/>
+\usepackage{ccicons} %%Creative commons icons <http://muug.ca/mirror/ctan/fonts/ccicons/ccicons.pdf> for attribution according to the license <https://wiki.creativecommons.org/wiki/Best_practices_for_attribution>. Search for reusable content at <https://search.creativecommons.org/> and Google Image search now has copyright metadata enabling filtering by license type.
 \usepackage[final]{showkeys} %%the [final] option is for the showkeys package, change to [draft] to see each ref key's label
-\usepackage{lipsum,todonotes} %%lipsum[a-b][c-d] for Lorem Ipsum dummy text paragraph #a-b, line #c-d ; standard margin notes with \marginpar{} & colored ones with \todo{}
-%\usepackage{pgfplots,tikz,animate,media9} %%graphs, drawing & multimedia tools
+%\setlength{\marginparwidth}{2cm}
+\usepackage{lipsum,todonotes} %%lipsum[a-b][c-d] for Lorem Ipsum dummy text paragraph #a-b, line #c-d ; standard margin notes with \marginpar{} & colored ones with \todo{} that reguires 2 cm margins(marginparwidth), thus its output may conflict with the geometry package layout options, but we can a force temporary resolution by uncommenting the \setlength at the previous line 
+%\usepackage{media9,animate,tikz,pgfplots} %%tools for multimedia, drawing and graphs. Direct graph export in TikZ code is possible with Geogebra online or apps(!), see <https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_2)%E2%80%94Generating_TikZ_Code_from_GeoGebra>
 %\usepackage{pythontex} %%Python code executable in LaTeX! info article <https://doi.org/10.1088/1749-4699/8/1/014010> with documentation on CTAN as usual.
 
 %## Bibliography ##
@@ -69,7 +70,7 @@
 %\addbibresource{} %%import your bibliography file in bibLAtex format by creating a new file (top left icon) from Zotero, once your account is linked through the settings page. The bibLAtex file name goes in the curly brackets with the .bib extension explicitely.
 
 %## Hyperlinks ##
-\usepackage{hyperref} %%\href{address}{hypertext} to link the hypertext and \url{adress} to link the displayed web address, note that its loading order may cause bugs as discussed at <https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before>
+\usepackage{hyperref} %%\href{_web address_}{_hypertext_} to link the hypertext and \url{_web address_} to link the displayed web address, the ~\ref{_label_} internal cross-referencing becomes hyperlinked with \hyperref[_label_]{_hypertext_} for hypertext cross-referenced back to that label. N.B. The package loading order may cause bugs as discussed at <https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before>
 \usepackage{xurl,doi} %%allows more line breaks in URL and automatically resolves object identifiers doi, arXiv, OCLC (from WorlCat references), etc. For DOI bugs, use \doi{} to generate a proper URL from the DOI publication number.
 
 %## Layout ##
@@ -100,12 +101,14 @@
     labelfont=bf,
     margin=0.1\textwidth}
 \sisetup{separate-uncertainty=true} %%uncertainty formatting with \pm instead of parentheses() at the end by default.
-\hypersetup{   %%essentially controls the appearance of the hypertext
+\hypersetup{   %%hypertext and links options for the hyperref package, see <https://www.overleaf.com/learn/latex/hyperlinks#Reference_guide>
+    breaklinks=true,
+    linktocpage=true,
     colorlinks=true,
-    linkcolor=blue,
-    filecolor=blue, 
     urlcolor=blue,
-    bookmarks=true} %%the table of content is stored in the .pdf metadata, this should make it show automatically on the document side in the .pdf reader.
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue}
 %\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
 
 %---------------------------------------------------------
@@ -157,7 +160,7 @@ See \url{https://www.overleaf.com/docs?template=overleaf&rich_text=false}, part 
 \lipsum[1][1] Indeed, figure~\ref{fig:} illustrates this issue.
 
 \subsection{Including a figure with text wrapping around it} %%info on wrapping at <https://www.overleaf.com/learn/latex/Wrapping_text_around_figures>
-\lipsum[1-3]
+\lipsum[1-2]\par
 \begin{wrapfigure}{r}{0.25\textwidth} %%arguments are {if oneside: l left or r right, if twoside: i inside edge or o outside edge, capitalize the letter to float the figure}{width of figure box}
     \centering
     \includegraphics[width=0.25\textwidth]{} %%the size of the image is set in option
