@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
-\documentclass[english,french,12pt,letterpaper]{}
+\documentclass[english,french,12pt]{}
 %%DON'T FORGET TO SET THE CORRECT CLASS, looking first at editor guidelines and Overleaf templates <https://www.overleaf.com/latex/templates/tagged/academic-journal> for publication!
 
 %----------------------------------------------------------------
@@ -65,9 +65,9 @@
 
 %## Layout ##
 %%Watch for conflicts with the overall document class.
-\usepackage[letterpaper,text={7in,9in}]{geometry}
+\usepackage{geometry} %%page layout
 \usepackage{fancyhdr}
-\usepackage{setspace} %%interline spacing tools ; units relative to current font: ex - height of an 'x', em - width of an 'M' (uppercase)
+\usepackage{setspace} %%interline spacing tools ; unit relative to current font: em ~width of an 'M' (uppercase), typically equal to the font size in pt
 \usepackage{enumitem} %%tools to change list format
 \usepackage{import}
 %\usepackage{xsim,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
@@ -75,20 +75,27 @@
 %---------------------------------------------------------
 %### Configuring the layout and other format setups ###
 %
+\geometry{  %%for geometry package
+%    showframe,  %%uncomment to see lines delimiting the dimension boxes
+    letterpaper,
+    margin=0.75in}
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \cfoot{-\thepage-} %%bottom center page numbering
 %\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages
-\setlength{\parskip}{1.5ex plus0.5ex minus0.2ex}
-%\setlength\parindent{0pt}
+\widowpenalty=300 %%increase for less likely widow lines
+\clubpenalty=300  %%increase for less likely orphan lines
+\setlength{\parskip}{1em plus0.4em minus0.2em} %%changing space between paragraphs
+%\setlength\parindent{3em} %%uncomment to force indentation of all paragraphs or remove completely with 0em
 %\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list
 \setcounter{equation}{0} %%ensure resetting of the equation counter
 \captionsetup{  %%for figure and table captions
     font=small,
     labelfont=bf,
-    margin=0.1\textwidth}
-\sisetup{separate-uncertainty=true} %for SIunitx package
+    labelsep=period,
+    margin=1em}
+\sisetup{separate-uncertainty=true} %%for SIunitx package
 \hypersetup{   %%for hyperref package
     breaklinks=true,
     linktocpage=true,
