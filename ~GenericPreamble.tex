@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %~GenericPreamble.tex : Preamble optimized for optical material research and training duplicated from ~GenericStart, but with reduced commenting and no BODY MATTER examples.
 %------------------------------------------------------------------
-%Écrit par Claudine Nì. Allen
+%Créé par Claudine Nì. Allen
 %Contributions par -
-%Dernière modification : 9 mars 2020
+%Dernière modification : 24 novembre 2020
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
@@ -18,13 +18,13 @@
 \usepackage[T1]{fontenc}
 \usepackage{babel} %%is globally set to French, switch to English by inverting order in the '\documentclass' options
 \usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters & quotes with '\textquote{}' and the '\begin{displayquote}...\end{displayquote}' environment
-\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%math fonts and more symbols, extensively listed and beyond in the 'latex-AllSymbolList.pdf' of this repository
+\PassOptionsToPackage{mathscr}{eucal}\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%math fonts and more symbols, extensively listed in the 'latex-AllSymbolList.pdf' of this repository
 \usepackage{ulem} %%underlining with '\uline{}', '\uwave{}' etc. and strikeout with '\sout{}'
 \normalem
 %\usepackage{newtxtext} %%for a Times New Roman text font output.
 
 %## Colors, Boxes & Figures ##
-\usepackage[usenames,dvipsnames,table]{xcolor} %%view the named colours at <https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips>
+\usepackage[usenames,x11names,table]{xcolor} %%colour names in 'xcolor-palettes.pdf' of this repository. For printing, the [cmyk,dvipsnames] colour model is preferred.
 \usepackage{fancybox} %%more framed boxes
 \usepackage[breakable]{tcolorbox} %%coloured boxes with optional title
 \usepackage{float} %%more control on any floating environments 
@@ -37,22 +37,23 @@
 %\usepackage[all]{xy} %%nice math diagrams
 \usepackage{siunitx} %%scientific & complex numbers, measurement & uncertainty, see 'latex-SIunitx.pdf' in this repo
 \usepackage{physics} %%typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in this repository
+\usepackage{pgfplots} %%graphs of symbolic functions and equations
 %\usepackage{tikz-network} %%crystal lattice & complex networks drawing
 %\usepackage{tikz-optics} %%optical drawing
 %\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing
 %\usepackage{tikzorbital,chemfig,chemmacros,mhchem} %%chemical drawings/diagrams and formulae & safety
 %\usepackage{pstricks,pst-labo} %%laboratory chemical glassware
 %\usepackage{pstricks,dsptricks,pst-sigsys} %%signal processing plots/drawings
-%\usepackage[americanvoltages,americancurrents]{circuitikz} %%electrical circuit drawing
+%\usepackage[RPvoltages,americanvoltages,americancurrents]{circuitikz} %%electrical circuit drawing with Rising Potential voltages
 %\usetikzlibrary{babel} %%needed for electrical circuit drawing when running babel-french
-%\usepackage{quantikz} %%quantum circuit drawing
+%\usepackage{yquant} %%quantum circuit drawing
 
 %## Miscellaneous Nice Tools ##
 \usepackage{ccicons} %%Creative Commons icons, reusable content at <https://search.creativecommons.org/>
 %\usepackage[draft]{showkeys} %%uncomment to display the label of each '\ref' key in the document output
 %\setlength{\marginparwidth}{2cm} %%uncomment to force a temporary resolution of 'todonotes' margin warning
 \usepackage{lipsum,todonotes} %%'\lipsum[_a-b_][_c-d_]' for dummy text paragraph #_a-b_, line #_c-d_ ; standard margin notes with '\marginpar{}' & colored ones with '\todo{}'
-%\usepackage{media9,animate,tikz,pgfplots} %%tools for multimedia, drawing and graphs
+%\usepackage{media9,animate,tikz} %%tools for multimedia and general drawing
 %\usepackage{pythontex} %%runs Python code in the LaTeX source files and typeset the output
 
 %## Bibliography ##
@@ -104,6 +105,9 @@
     linkcolor=blue,
     citecolor=blue,
     filecolor=blue}
+%\pgfplotsset{compat=1.9,width=5cm,color=blue} %%"compat" argument advised for the pgfplots package
+
+%---------------------------------------------------------
 %\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
 
 %---------------------------------------------------------

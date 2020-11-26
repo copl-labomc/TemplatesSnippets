@@ -1,9 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %~GenericStart.tex : Preamble optimized for optical material research and training. It is heavily commented to help new users, the specific templates in this repository have this preamble with less comments. Some examples of package uses are provided in the document BODY MATTER, modify or remove as needed. The same preamble lightly commented with the most useful is in the ~GenericPreamble file of this repository. 
 %------------------------------------------------------------------
-%Écrit par Claudine Nì. Allen
+%Créé par Claudine Nì. Allen
 %Contributions par -
-%Dernière modification : 8 mars 2020
+%Dernière modification : 24 novembre 2020
 %ToDo: 
 % - Fix links to CTAN documentation to get the dynamic address, hence mirror independent
 % - Revise package fancyhdr with associated header & footer configurations
@@ -32,13 +32,13 @@
 \usepackage[T1]{fontenc} %%international font encoding output, see <https://www.overleaf.com/learn/latex/French#Font_encoding>
 \usepackage{babel} %%is set to French, see babel-french on CTAN for info; invert with English option in documentclass above to globally set to English
 \usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters <https://www.tug.org/pracjourn/2006-1/robertson/robertson.pdf> & quotes with \textquote{} and the \begin{displayquote}...\end{displayquote} environment
-\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%typesetting math <http://www.peteryu.ca/tutorials/publishing/latex_math_script_styles> and more symbols, extensively listed, and beyond with further packages, in the 'latex-AllSymbolList.pdf' of this repository ; N.B. coloremoji symbol package is not working with pdfLaTeX compilation atm, an issue to follow up.
+\PassOptionsToPackage{mathscr}{eucal}\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%typesetting math <http://www.peteryu.ca/tutorials/publishing/latex_math_script_styles>, <https://www.overleaf.com/learn/latex/Errors/LaTeX_Error:_%5Cmathrm_allowed_only_in_math_mode> extensively listed with further packages in the 'latex-AllSymbolList.pdf' of this repository ; N.B. coloremoji symbol package is not working with pdfLaTeX compilation atm, an issue to follow up.
 \usepackage{ulem} %%underlining with '\uline{}', '\uwave{}' etc. and strikeout with '\sout{}'
 \normalem %%prevents the ulem package of changing \emph{} from italics to underline
 %\usepackage{newtxtext} %%for a Times New Roman text font output. Alternatively compile with XeLaTeX if the appearance is not satisfying, Overleaf says <https://www.overleaf.com/learn/latex/XeLaTeX>
 
 %## Colors, Boxes & Figures ##
-\usepackage[usenames,dvipsnames,table]{xcolor} %%view the named colours at <https://en.wikibooks.org/wiki/LaTeX/Colors#The_68_standard_colors_known_to_dvips>
+\usepackage[usenames,x11names,table]{xcolor} %%colour names in 'xcolor-palettes.pdf' of this repository. For printing, the [cmyk,dvipsnames] colour model is better than [x11names] based on RGB: <https://tex.stackexchange.com/questions/502953/are-there-any-pros-and-cons-associated-with-dvipsnames-svgnames-and-x11names-i>
 \usepackage{fancybox} %%more framed boxes to emphasize text, some info at <https://en.wikibooks.org/wiki/LaTeX/Boxes#colorbox_and_fcolorbox>
 \usepackage[breakable]{tcolorbox} %%coloured boxes with optional title, search 'tcolobox' for faster setting in <http://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex/guide-latex-fr/Archives/guide-latex-fr_V2.pdf>
 \usepackage{float} %%more control on any floating environments, such as 'figure' and 'table'  <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures>
@@ -51,22 +51,23 @@
 %\usepackage[all]{xy} %%nice math diagrams
 \usepackage{siunitx} %%language-specific with scientific and complex number notation as well as measurement and uncertainty formatting according to the Système International d’Unités (SI); documentation in 'latex-SIunitx.pdf' of this repo
 \usepackage{physics} %%typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in this repository
+\usepackage{pgfplots} %%graphs of symbolic functions and equations. Direct graph export in TikZ code is possible with Geogebra online or apps(!), see <https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_2)%E2%80%94Generating_TikZ_Code_from_GeoGebra>.
 %\usepackage{tikz-network} %%crystal lattice & complex networks drawing
 %\usepackage{tikz-optics} %%optical drawing
 %\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing, but needs compiler setting LaTeX(outputting .dvi files) instead of pdfLaTeX as it relies on PostScript, more info at <https://www.overleaf.com/learn/latex/Choosing_a_LaTeX_Compiler> & <http://tug.org/PSTricks/main.cgi?file=pdf/pdfoutput#autopstpdf>
 %\usepackage{tikzorbital,chemfig,chemmacros,mhchem} %%orbital, hybrid and molecule drawings/diagrams as well as notation of chemical formulae and even standard Risk and Safety phrases
 %\usepackage{pstricks,pst-labo} %%laboratory chemical glassware, see PSTricks comment above
 %\usepackage{pstricks,dsptricks,pst-sigsys} %%signal processing plots/drawings, see PSTricks comment above
-%\usepackage[americanvoltages,americancurrents]{circuitikz} %%electrical circuit drawing
+%\usepackage[RPvoltages,americanvoltages,americancurrents]{circuitikz} %%electrical circuit drawing with Rising Potential voltages: the arrow is in the direction of rising potential, the default directions of voltage and current are chosen so that, when both values are positive: the element is dissipating power in passive components | the element is generating power in active components (generators).
 %\usetikzlibrary{babel} %%needed for electrical circuit drawing when running babel-french
-%\usepackage{quantikz} %%quantum circuit drawing
+%\usepackage{yquant} %%quantum circuit drawing
 
 %## Miscellaneous Nice Tools ##
 \usepackage{ccicons} %%Creative Commons icons <http://muug.ca/mirror/ctan/fonts/ccicons/ccicons.pdf> for attribution according to the license <https://wiki.creativecommons.org/wiki/Best_practices_for_attribution>. Search for reusable content at <https://search.creativecommons.org/> and Google Image search now has copyright metadata enabling filtering by license type.
 %\usepackage[draft]{showkeys} %%uncomment to display the label of each '\ref' key in the document output
 %\setlength{\marginparwidth}{2cm}
 \usepackage{lipsum,todonotes} %%'\lipsum[_a-b_][_c-d_]' for Lorem Ipsum dummy text paragraph #_a-b_, line #_c-d_ ; standard margin notes with \marginpar{} & colored ones with \todo{} that reguires 2 cm margins(marginparwidth), thus its output may conflict with the geometry package layout options, but we can a force temporary resolution by uncommenting the \setlength at the previous line 
-%\usepackage{media9,animate,tikz,pgfplots} %%tools for multimedia, drawing and graphs. Direct graph export in TikZ code is possible with Geogebra online or apps(!), see <https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_2)%E2%80%94Generating_TikZ_Code_from_GeoGebra>
+%\usepackage{media9,animate,tikz} %%tools for multimedia and general drawing.
 %\usepackage{pythontex} %%runs Python code in the LaTeX source files and typeset the output. Info article <https://doi.org/10.1088/1749-4699/8/1/014010> with documentation on CTAN as usual.
 
 %## Bibliography ##
@@ -89,7 +90,7 @@
 %%For more packages, search CTAN or browse it by topics. Also of interest: <https://www.ctan.org/pkg/latex-tools>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks> 
 
 %---------------------------------------------------------
-%### Configuring the layout and other format setups ### (most require a package from above)
+%### Configuring the layout and other global setups ### (most require a package from above)
 %
 \geometry{  %%easy customization of page layout <https://www.overleaf.com/learn/latex/Page_size_and_margins#Fine_tuning_your_LaTeX_page_dimensions>
 %    showframe,  %%uncomment to see lines delimiting the dimension boxes
@@ -124,6 +125,9 @@
     linkcolor=blue,
     citecolor=blue,
     filecolor=blue}
+%\pgfplotsset{compat=1.9,width=5cm,color=blue} %%"compat" argument advised to ensure backward compatibility of the pgfplots package, then settings for default graph appearance as desired, see  <https://www.overleaf.com/learn/latex/pgfplots_package> for an intro.
+
+%---------------------------------------------------------
 %\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
 
 %---------------------------------------------------------
@@ -167,7 +171,7 @@
 %------ BODY MATTER ------%
 %
 \section{Overleaf basic template with explanations}
-See \url{https://www.overleaf.com/docs?template=overleaf&rich_text=false}, part of a large \href{https://www.overleaf.com/latex/templates}{template library} opening directly in Overleaf. 
+See \url{https://www.overleaf.com/docs?template=overleaf&rich_text=false}, part of a large \href{https://www.overleaf.com/latex/templates}{template library} opening directly in Overleaf.
 
 \section*{Examples} %%an asterisk prevents displaying the current counter number
 
