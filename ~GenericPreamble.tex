@@ -18,13 +18,13 @@
 \usepackage[T1]{fontenc}
 \usepackage{babel} %%is globally set to French, switch to English by inverting order in the '\documentclass' options
 \usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters & quotes with '\textquote{}' and the '\begin{displayquote}...\end{displayquote}' environment
-\PassOptionsToPackage{mathscr}{eucal}\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%math fonts and more symbols, extensively listed in the 'latex-AllSymbolList.pdf' of this repository
+\PassOptionsToPackage{mathscr}{eucal}\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%math fonts and more symbols, extensively listed in the 'latex-AllSymbolList.pdf' of the 'Templates_labOMC' repo
 \usepackage{ulem} %%underlining with '\uline{}', '\uwave{}' etc. and strikeout with '\sout{}'
 \normalem
 %\usepackage{newtxtext} %%for a Times New Roman text font output.
 
 %## Colors, Boxes & Figures ##
-\usepackage[usenames,x11names,table]{xcolor} %%colour names in 'xcolor-palettes.pdf' of this repository. For printing, the [cmyk,dvipsnames] colour model is preferred.
+\usepackage[usenames,x11names,table]{xcolor} %%colour names in 'xcolor-palettes.pdf' of the 'Templates_labOMC' repo. For printing, the [cmyk,dvipsnames] colour model is preferred.
 \usepackage{fancybox} %%more framed boxes
 \usepackage[breakable]{tcolorbox} %%coloured boxes with optional title
 \usepackage{float} %%more control on any floating environments 
@@ -35,9 +35,9 @@
 \usepackage{amsmath,amsthm,amssymb}
 %\usepackage{cancel,trfsigns} %%math simplifications & signs for transforms respectively
 %\usepackage[all]{xy} %%nice math diagrams
-\usepackage{siunitx} %%scientific & complex numbers, measurement & uncertainty, see 'latex-SIunitx.pdf' in this repo
-\usepackage{physics} %%typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in this repository
-\usepackage{pgfplots} %%graphs of symbolic functions and equations
+\usepackage{siunitx} %scientific & complex numbers, measurement & uncertainty, see 'latex-SIunitx.pdf' in the 'Templates_labOMC' repo.
+\usepackage{physics} %typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in the 'Templates_labOMC' repo.
+\usepackage{pgfplots} %graphs of symbolic functions and equations
 %\usepackage{tikz-network} %%crystal lattice & complex networks drawing
 %\usepackage{tikz-optics} %%optical drawing
 %\usepackage{pstricks,pst-optexp,pst-optic} %%neat PSTricks optical drawing
@@ -57,8 +57,8 @@
 %\usepackage{pythontex} %%runs Python code in the LaTeX source files and typeset the output
 
 %## Bibliography ##
-%\usepackage[backend=biber,sorting=none]{biblatex} %%see 'cheatsheet-BibLaTeX.tex' in this repository
-%\addbibresource{} %%import your .bib file in bibLAtex format from Zotero
+%\usepackage[backend=biber,sorting=none]{biblatex} %%see 'cheatsheet-BibLaTeX.tex' in the 'Templates_labOMC' repo.
+%\addbibresource{} %%import your .bib file in BibLaTeX format from Zotero
 
 %## Hyperlinks ##
 \usepackage{hyperref} %%'\href{_URL_}{_hypertext_}' to link the hypertext & '\url{_URL_}' to link the displayed web address, each internal '~\ref{_label_}' is hyperlinked with '\hyperref[_label_]{_hypertext_}' enabling hypertext instead.
@@ -74,8 +74,10 @@
 %\usepackage{xsim,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
 
 %---------------------------------------------------------
-%### Configuring the layout and other format setups ###
+%### Settings ###
 %
+%## Configuring the layout and other format setups ##
+%\the\parindent{} , \the\value{equation} %%and other '\the' commands to see the current parameter, counter,... value
 \geometry{  %%for geometry package
 %    showframe,  %%uncomment to see lines delimiting the dimension boxes
     letterpaper,
@@ -96,6 +98,8 @@
     labelfont=bf,
     labelsep=period,
     margin=1em}
+    
+%## Global settings for packages ##
 \sisetup{separate-uncertainty=true} %%for SIunitx package
 \hypersetup{   %%for hyperref package
     breaklinks=true,
@@ -105,7 +109,8 @@
     linkcolor=blue,
     citecolor=blue,
     filecolor=blue}
-%\pgfplotsset{compat=1.9,width=5cm,color=blue} %%"compat" argument advised for the pgfplots package
+\pgfplotsset{compat=1.9,width=5cm} %%for pgfplots package, backwards compatibility with 'compat'
+\usetikzlibrary{arrows} %%for PGF/TikZ
 
 %---------------------------------------------------------
 %\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
@@ -113,11 +118,14 @@
 %---------------------------------------------------------
 %### Defining command shortcuts & macros ###
 %
-\newcommand{\be}{\begin{equation}}
+\newcommand{\be}{\begin{equation}} %%for numbered equations, use instead \[...\] to display without numbering or $...$ to include directly inline.
 \newcommand{\ee}{\end{equation}}
-\newcommand{\bea}{\begin{align}} %%align on &= the equal sign and more generally on the ampersand & character
+\newcommand{\bea}{\begin{align}} %%number each equation and align them on &= the equal sign and more generally on the ampersand & character. 
 \newcommand{\eea}{\end{align}}
-\newcommand{\beg}{\begin{gather}}
+\newenvironment{eqsplit}{\equation\aligned}{\endaligned\endequation}
+\newcommand{\bes}{\begin{eqsplit}} %%defined the same way as the align environment, but considered as one equation on multiple lines with one number overall.
+\newcommand{\ees}{\end{eqsplit}}
+\newcommand{\beg}{\begin{gather}} %%gathering equations one below another without aligning.
 \newcommand{\eeg}{\end{gather}}
 \DeclareMathOperator{\TLs}{\mathscr{L}} %%Laplace transform symbol \TLs
 \newcommand{\TLd}[1]{\TLs\!\left[#1\right]} %%Laplace transform operator \TLd{}

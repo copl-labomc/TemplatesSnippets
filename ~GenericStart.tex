@@ -1,16 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%~GenericStart.tex : Preamble optimized for optical material research and training. It is heavily commented to help new users, the specific templates in this repository have this preamble with less comments. Some examples of package uses are provided in the document BODY MATTER, modify or remove as needed. The same preamble lightly commented with the most useful is in the ~GenericPreamble file of this repository. 
+%~GenericStart.tex : Preamble optimized for optical material research and training. It is heavily commented to help new users, the specific templates in this repository have this preamble with less comments. Some examples of package uses are provided in the document BODY MATTER, modify or remove as needed. The same preamble lightly commented with the most useful info is in the ~GenericPreamble file of this repository. 
 %------------------------------------------------------------------
 %Créé par Claudine Nì. Allen
 %Contributions par -
 %Dernière modification : 24 novembre 2020
 %ToDo: 
 % - Fix links to CTAN documentation to get the dynamic address, hence mirror independent
-% - Revise package fancyhdr with associated header & footer configurations
+% - Après discussion avec notre conseiller bibliothécaire & Pat Desrosier puis consultation de <https://www.overleaf.com/learn/latex/Articles%2FTaming_LaTeX's_Page_Layout:_A_Visual_Template_and_Toolset_for_Book_Authors>, revise package fancyhdr with associated header & footer configurations, 
 % - Complete & add examples for most common package uses in the document environment - main text
 % - Complete commands for FRONT MATTER, TOP MATTER, sectioning in BODY MATTER & BACK MATTER, have a look at <https://en.wikibooks.org/wiki/LaTeX/Document_Structure> and what Overleaf says about it.
 % - Add missing 'quotes' for code and approximate consistence using Markdown in comments
-% - Pour la notation des transformations de Fourier & Laplace, trancher entre \mathcal (naturel LaTeX & BlaTeX en ligne) et \mathscr (Unicode standard ISO, donc probable à l'écrit) en discutant avec JGenest, MDesjardins & Théoriciens
+% - Pour la notation des transformations de Fourier & Laplace, trancher entre \mathcal (naturel LaTeX & BlaTeX en ligne) et \mathscr (Unicode standard ISO, donc probable à l'écrit) en discutant avec JGenest, MDesjardins & Théoriciens... quoique j'ai re-défini \mathscr pour utiliser eucal font lol.
 % - Cheatsheet for babel-french (see CTAN doc and <https://en.wikibooks.org/wiki/LaTeX/Internationalization#French>,<https://www.overleaf.com/learn/latex/French>) with tools for better French writing (Thesaurus-Synonyms-Dico resources especially directly through GDocs & friends (first draft BODY MATTER with LaTeX code right there),Antidote,GDT,Linguee,Termium,IUPAC gold book, etc.) with its equivalent wikiOMC page (since we are at it, test markdown &/or html conversion utility, pandoc I think it is)
 % - Cheatsheet for SIunitx commands, explain non-breaking spaces and this package avoid forgetting lots of those on top of proper formatting.
 % - Cheatsheet for the Physics package expanded with common math, or start by searching a good latex cheatsheet to expand with Physics package commands. At the top, link to Detexify <http://detexify.kirelabs.org/classify.html>, <https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject>, <https://meta.wikimedia.org/wiki/Help:Displaying_a_formula> & other relevant apps like EquatIO =)
@@ -32,13 +32,13 @@
 \usepackage[T1]{fontenc} %%international font encoding output, see <https://www.overleaf.com/learn/latex/French#Font_encoding>
 \usepackage{babel} %%is set to French, see babel-french on CTAN for info; invert with English option in documentclass above to globally set to English
 \usepackage{lmodern,csquotes} %%extended support for proper typesetting of accented letters <https://www.tug.org/pracjourn/2006-1/robertson/robertson.pdf> & quotes with \textquote{} and the \begin{displayquote}...\end{displayquote} environment
-\PassOptionsToPackage{mathscr}{eucal}\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%typesetting math <http://www.peteryu.ca/tutorials/publishing/latex_math_script_styles>, <https://www.overleaf.com/learn/latex/Errors/LaTeX_Error:_%5Cmathrm_allowed_only_in_math_mode> extensively listed with further packages in the 'latex-AllSymbolList.pdf' of this repository ; N.B. coloremoji symbol package is not working with pdfLaTeX compilation atm, an issue to follow up.
+\PassOptionsToPackage{mathscr}{eucal}\usepackage{amsfonts,eucal,mathrsfs,textcomp} %%typesetting math <http://www.peteryu.ca/tutorials/publishing/latex_math_script_styles>, <https://www.overleaf.com/learn/latex/Errors/LaTeX_Error:_%5Cmathrm_allowed_only_in_math_mode> extensively listed with further packages in the 'latex-AllSymbolList.pdf' of the 'Templates_labOMC' repo ; N.B. coloremoji symbol package is not working with pdfLaTeX compilation atm, an issue to follow up.
 \usepackage{ulem} %%underlining with '\uline{}', '\uwave{}' etc. and strikeout with '\sout{}'
 \normalem %%prevents the ulem package of changing \emph{} from italics to underline
 %\usepackage{newtxtext} %%for a Times New Roman text font output. Alternatively compile with XeLaTeX if the appearance is not satisfying, Overleaf says <https://www.overleaf.com/learn/latex/XeLaTeX>
 
 %## Colors, Boxes & Figures ##
-\usepackage[usenames,x11names,table]{xcolor} %%colour names in 'xcolor-palettes.pdf' of this repository. For printing, the [cmyk,dvipsnames] colour model is better than [x11names] based on RGB: <https://tex.stackexchange.com/questions/502953/are-there-any-pros-and-cons-associated-with-dvipsnames-svgnames-and-x11names-i>
+\usepackage[usenames,x11names,table]{xcolor} %%colour names in 'xcolor-palettes.pdf' of the 'Templates_labOMC' repo. For printing, the [cmyk,dvipsnames] colour model is better than [x11names] based on RGB: <https://tex.stackexchange.com/questions/502953/are-there-any-pros-and-cons-associated-with-dvipsnames-svgnames-and-x11names-i>
 \usepackage{fancybox} %%more framed boxes to emphasize text, some info at <https://en.wikibooks.org/wiki/LaTeX/Boxes#colorbox_and_fcolorbox>
 \usepackage[breakable]{tcolorbox} %%coloured boxes with optional title, search 'tcolobox' for faster setting in <http://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex/guide-latex-fr/Archives/guide-latex-fr_V2.pdf>
 \usepackage{float} %%more control on any floating environments, such as 'figure' and 'table'  <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Figures>
@@ -46,11 +46,11 @@
 \usepackage{graphicx,wrapfig,caption,sidecap} %%Overleaf help for figures says <https://www.overleaf.com/learn/latex/Inserting_Images>. Compiling with pdfLaTeX supports .pdf, .png, .jpg and .eps files, the latter being converted to .pdf. When using Inkscape, the native vector format is .svg, but export in .eps+LaTeX and .pdf+LaTeX can be done as follows <http://ctan.mirror.rafal.ca/info/svg-inkscape/InkscapePDFLaTeX.pdf>, more info here <https://www.overleaf.com/blog/25-beautiful-graphs-how-to-turn-an-inkscape-drawing-into-an-editable-latex-document>. A dedicated svg package <https://www.ctan.org/pkg/svg> adds the commands \includeinkscape and \includesvg, where the former imports the .pdf_tex file and the latter automates further, but needing a --shell-escape flag for compilation. Conversion to TikZ code <https://github.com/kjellmf/svg2tikz> also possible!
 
 %## Maths & Physics ##
-\usepackage{amsmath,amsthm,amssymb} %%from the American Mathematical Society
+\usepackage{amsmath,amsthm,amssymb} %%from the American Mathematical Society, overview at <https://www.overleaf.com/learn/latex/Mathematical_expressions> & <https://en.wikibooks.org/wiki/LaTeX/Advanced_Mathematics>
 %\usepackage{cancel,trfsigns} %%math simplifications & signs for transforms respectively
 %\usepackage[all]{xy} %%nice math diagrams
-\usepackage{siunitx} %%language-specific with scientific and complex number notation as well as measurement and uncertainty formatting according to the Système International d’Unités (SI); documentation in 'latex-SIunitx.pdf' of this repo
-\usepackage{physics} %%typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in this repository
+\usepackage{siunitx} %%language-specific with scientific and complex number notation as well as measurement and uncertainty formatting according to the Système International d’Unités (SI); documentation in 'latex-SIunitx.pdf' of the 'Templates_labOMC' repo.
+\usepackage{physics} %%typesetting for mathematical physics, see 'latex-PhysicsPack.pdf' in the 'Templates_labOMC' repo.
 \usepackage{pgfplots} %%graphs of symbolic functions and equations. Direct graph export in TikZ code is possible with Geogebra online or apps(!), see <https://www.overleaf.com/learn/latex/LaTeX_Graphics_using_TikZ:_A_Tutorial_for_Beginners_(Part_2)%E2%80%94Generating_TikZ_Code_from_GeoGebra>.
 %\usepackage{tikz-network} %%crystal lattice & complex networks drawing
 %\usepackage{tikz-optics} %%optical drawing
@@ -71,8 +71,8 @@
 %\usepackage{pythontex} %%runs Python code in the LaTeX source files and typeset the output. Info article <https://doi.org/10.1088/1749-4699/8/1/014010> with documentation on CTAN as usual.
 
 %## Bibliography ##
-%\usepackage[backend=biber,sorting=none]{biblatex} %%Overleaf explains <https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX>,<https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex> with more templates at <https://www.overleaf.com/latex/templates/tagged/bibliography>. Documentation at <https://www.ctan.org/pkg/biblatex>, also with 'cheatsheet-BibLaTeX.tex' in this repository.
-%\addbibresource{} %%import your bibliography file in bibLAtex format by creating a new file (top left icon) from Zotero, once your account is linked through the settings page. The bibLAtex file name goes in the curly brackets with the explicit .bib extension
+%\usepackage[backend=biber,sorting=none]{biblatex} %%Overleaf explains <https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX>,<https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex> with more templates at <https://www.overleaf.com/latex/templates/tagged/bibliography>. Documentation at <https://www.ctan.org/pkg/biblatex>, also with 'cheatsheet-BibLaTeX.tex' in the 'Templates_labOMC' repo.
+%\addbibresource{} %%import your bibliography file in BibLaTeX format by creating a new file (top left icon) from Zotero, once your account is linked through the settings page. The BibLaTeX file name goes in the curly brackets with the explicit .bib extension
 
 %## Hyperlinks ##
 \usepackage{hyperref} %%\href{_web address_}{_hypertext_} to link the hypertext and \url{_web address_} to link the displayed web address, the ~\ref{_label_} internal cross-referencing becomes hyperlinked with \hyperref[_label_]{_hypertext_} for hypertext cross-referenced back to that label. N.B. The package loading order may cause bugs as discussed at <https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before>
@@ -90,8 +90,10 @@
 %%For more packages, search CTAN or browse it by topics. Also of interest: <https://www.ctan.org/pkg/latex-tools>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks> 
 
 %---------------------------------------------------------
-%### Configuring the layout and other global setups ### (most require a package from above)
+%### Settings ###
 %
+%## Configuring the layout and other format setups ##
+%\the\parindent{} , \the\value{equation} %%and other '\the' commands to see the current parameter, counter,... value
 \geometry{  %%easy customization of page layout <https://www.overleaf.com/learn/latex/Page_size_and_margins#Fine_tuning_your_LaTeX_page_dimensions>
 %    showframe,  %%uncomment to see lines delimiting the dimension boxes
     letterpaper,
@@ -108,15 +110,14 @@
 %\setlength\parindent{3em} %%uncomment to force indentation of all paragraphs or remove everywhere with 0em
 %\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list, remove that option to apply to all 3 basic list types
 \setcounter{equation}{0} %%ensure resetting of the equation counter, more info at <https://en.wikibooks.org/wiki/LaTeX/Counters>
-\the\textwidth\\
-\the\parindent{}\\
-\the\value{equation}
 \captionsetup{  %%format settings for the figure and table captions
     font=small,
     labelfont=bf,
     labelsep=period,
     margin=1em}
-\sisetup{separate-uncertainty=true} %%uncertainty formatting with \pm instead of parentheses() at the end by default.
+    
+%## Global settings for packages (when the option is not already loaded with the package earlier) ## 
+\sisetup{separate-uncertainty=true} %%uncertainty formatting in SIunitx package, using \pm instead of parentheses() at the end.
 \hypersetup{   %%hypertext and links options for the hyperref package, see <https://www.overleaf.com/learn/latex/hyperlinks#Reference_guide>
     breaklinks=true,
     linktocpage=true,
@@ -125,7 +126,8 @@
     linkcolor=blue,
     citecolor=blue,
     filecolor=blue}
-%\pgfplotsset{compat=1.9,width=5cm,color=blue} %%"compat" argument advised to ensure backward compatibility of the pgfplots package, then settings for default graph appearance as desired, see  <https://www.overleaf.com/learn/latex/pgfplots_package> for an intro.
+\pgfplotsset{compat=1.9,width=7cm} %%"compat" argument advised to ensure backwards compatibility of the pgfplots package, then default graph size
+\usetikzlibrary{arrows} %%for PGF/TikZ
 
 %---------------------------------------------------------
 %\onehalfspacing %%space for annotations on PDF, UNCOMMENT FOR PDF DRAFT REVISIONS!
@@ -133,10 +135,13 @@
 %---------------------------------------------------------
 %### Defining command shortcuts & macros ###
 %
-\newcommand{\be}{\begin{equation}} %%for numbered equations, use \[...\] to display without numbering or $...$ to include directly inline. More info at <https://www.overleaf.com/learn/latex/Mathematical_expressions>
+\newcommand{\be}{\begin{equation}} %%for numbered equations, use instead \[...\] to display without numbering or $...$ to include directly inline.
 \newcommand{\ee}{\end{equation}}
-\newcommand{\bea}{\begin{align}} %%align on &= the equal sign and more generally on the ampersand & character. More info at <https://artofproblemsolving.com/wiki/index.php/LaTeX:Math>
+\newcommand{\bea}{\begin{align}} %%number each equation and align them on &= the equal sign and more generally on the ampersand & character. More info at <https://artofproblemsolving.com/wiki/index.php/LaTeX:Math>. 
 \newcommand{\eea}{\end{align}}
+\newenvironment{eqsplit}{\equation\aligned}{\endaligned\endequation} %%workaround the parsing funkiness of the 'split' environment
+\newcommand{\bes}{\begin{eqsplit}} %%defined the same way as the align environment, but considered as one equation on multiple lines with one number overall.
+\newcommand{\ees}{\end{eqsplit}}
 \newcommand{\beg}{\begin{gather}} %%gathering equations one below another without aligning. More info at <https://www.overleaf.com/learn/latex/Aligning_equations_with_amsmath>
 \newcommand{\eeg}{\end{gather}}
 \DeclareMathOperator{\TLs}{\mathscr{L}} %%Laplace transform symbol \TLs
