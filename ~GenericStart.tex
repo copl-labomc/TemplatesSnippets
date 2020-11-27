@@ -3,7 +3,7 @@
 %------------------------------------------------------------------
 %Créé par Claudine Nì. Allen
 %Contributions par -
-%Dernière modification : 24 novembre 2020
+%Dernière modification : 26 novembre 2020
 %ToDo: 
 % - Fix links to CTAN documentation to get the dynamic address, hence mirror independent
 % - Après discussion avec notre conseiller bibliothécaire & Pat Desrosier puis consultation de <https://www.overleaf.com/learn/latex/Articles%2FTaming_LaTeX's_Page_Layout:_A_Visual_Template_and_Toolset_for_Book_Authors>, revise package fancyhdr with associated header & footer configurations, 
@@ -75,8 +75,8 @@
 %\addbibresource{} %%import your bibliography file in BibLaTeX format by creating a new file (top left icon) from Zotero, once your account is linked through the settings page. The BibLaTeX file name goes in the curly brackets with the explicit .bib extension
 
 %## Hyperlinks ##
-\usepackage{hyperref} %%\href{_web address_}{_hypertext_} to link the hypertext and \url{_web address_} to link the displayed web address, the ~\ref{_label_} internal cross-referencing becomes hyperlinked with \hyperref[_label_]{_hypertext_} for hypertext cross-referenced back to that label. N.B. The package loading order may cause bugs as discussed at <https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before>
-\usepackage{xurl,doi} %%allows more line breaks in URL and automatically resolves object identifiers such as IDs from doi, arXiv, OCLC (from WorlCat references), etc. For DOI bugs, use \doi{} to generate a proper URL from the DOI publication number.
+\usepackage{hyperref,xurl} %%\href{_web address_}{_hypertext_} to link the hypertext and \url{_web address_} to link the displayed web address, the ~\ref{_label_} internal cross-referencing becomes hyperlinked with \hyperref[_label_]{_hypertext_} for hypertext cross-referenced back to that label. N.B. The package loading order may cause bugs as discussed at <https://tex.stackexchange.com/questions/1863/which-packages-should-be-loaded-after-hyperref-instead-of-before> ; xurl for more line breaks.
+\usepackage{doi} %%automatically resolves object identifiers such as IDs from doi, arXiv, OCLC (from WorlCat references), etc. For DOI bugs, use \doi{} to generate a proper URL from the DOI publication number.
 
 %## Layout ##
 %%When using classes and templates with specific format guidelines, especially from academic journals, some of the following packages and configurations could be in conflict, thus comment out as needed. 
@@ -85,7 +85,7 @@
 \usepackage{setspace} %%interline spacing tools explained at <https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Line_spacing>; horizontal math spacing guide at <https://www.overleaf.com/learn/latex/Spacing_in_math_mode#Reference_guide>; for a relative unit set by the character size in the current font, use em - roughly the width of an 'M' (uppercase), a distance typically equal to the font size in pt
 \usepackage{enumitem} %%commands to change list format, documented at <http://mirrors.ctan.org/macros/latex/contrib/enumitem/enumitem.pdf> with basic list explanations at <https://www.overleaf.com/learn/latex/Lists>
 \usepackage{import} %%\import{_path_}{_filename_} to include other project files in the compiled main file
-%\usepackage{xsim,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively. The first one targets exams & exercises typesetting.
+%\usepackage{tasks,xsim,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively. The first two target exams & exercises typesetting.
 
 %%For more packages, search CTAN or browse it by topics. Also of interest: <https://www.ctan.org/pkg/latex-tools>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks> 
 
