@@ -3,7 +3,8 @@
 %------------------------------------------------------------------
 %Créé par Claudine Nì. Allen
 %Contributions par -
-%Dernière modification : 26 novembre 2020
+%Compilateur pdfLaTeX, distribution TeX Live 2020
+%Dernière modification : 14 janvier 2020
 %ToDo: 
 % - Fix links to CTAN documentation to get the dynamic address, hence mirror independent
 % - Après discussion avec notre conseiller bibliothécaire & Pat Desrosier puis consultation de <https://www.overleaf.com/learn/latex/Articles%2FTaming_LaTeX's_Page_Layout:_A_Visual_Template_and_Toolset_for_Book_Authors>, revise package fancyhdr with associated header & footer configurations, 
@@ -101,7 +102,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\cfoot{-\thepage-} %%bottom center page numbering
+\fancyfoot[C]{-\thepage-} %%bottom center page numbering
 %\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages, more info at <https://en.wikibooks.org/wiki/LaTeX/Footnotes_and_Margin_Notes>
 \widowpenalty=300 %%increase for less likely widows, _i.e._ the last line of a paragraph appearing at the top of the next page ; info at <https://en.wikibooks.org/wiki/LaTeX/Page_Layout#Widows_and_orphans>
 \clubpenalty=300  %%increase for less likely orphans, _i.e._ the first line of a paragraph appearing at the bottom of the previous page
@@ -111,10 +112,10 @@
 %\setlist[enumerate]{wide=0pt,widest=99,leftmargin=\parindent,labelsep=*} %%Global changes of the [enumerate] list, remove that option to apply to all 3 basic list types
 \setcounter{equation}{0} %%ensure resetting of the equation counter, more info at <https://en.wikibooks.org/wiki/LaTeX/Counters>
 \captionsetup{  %%format settings for the figure and table captions
-    font=small,
+    font=footnotesize,
     labelfont=bf,
     labelsep=period,
-    margin=1em}
+    margin=5em}
     
 %## Global settings for packages (when the option is not already loaded with the package earlier) ## 
 \sisetup{separate-uncertainty=true} %%uncertainty formatting in SIunitx package, using \pm instead of parentheses() at the end.
