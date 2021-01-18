@@ -8,7 +8,6 @@
 %
 %
 %ToDo: 
-% - Ajouter %---BEGIN HOMEMADE FOOTER---%... et dans le projet de conception ventilateur déjà fait aussi.
 % - Fix links to CTAN documentation to get the dynamic address, hence mirror independent
 % - Après discussion avec notre conseiller bibliothécaire & Pat Desrosier puis consultation de <https://www.overleaf.com/learn/latex/Articles%2FTaming_LaTeX's_Page_Layout:_A_Visual_Template_and_Toolset_for_Book_Authors>, revise package fancyhdr with associated header & footer configurations, 
 % - Complete & add examples for most common package uses in the document environment - main text
@@ -173,11 +172,13 @@
 %\begin{titlepage}...\end{titlepage} %%Uncomment and complete for title page
 
 %------ FRONT MATTER ------%
+%\frontmatter %%makes the pages numbered in lowercase roman and chapters not numbered, although each chapter’s title appears in the table of contents
 %
 %\listoffigures
 %\listoftables
 
 %------ BODY MATTER ------%
+%\mainmatter %%changes the behaviour back to the expected version and resets the page number.
 %
 \section{Overleaf basic template with explanations}
 See \url{https://www.overleaf.com/docs?template=overleaf&rich_text=false}, part of a large \href{https://www.overleaf.com/latex/templates}{template library} opening directly in Overleaf.
@@ -203,6 +204,7 @@ See \url{https://www.overleaf.com/docs?template=overleaf&rich_text=false}, part 
 \end{wrapfigure}
 
 %------ BACK MATTER  ------%
+%\backmatter %%leaves the page numbering alone but switches the chapters back to being not numbered.
 %
 %\printbibliography[heading=bibintoc] %%The bibliography section name can be changed by adding the argument title={}
 
