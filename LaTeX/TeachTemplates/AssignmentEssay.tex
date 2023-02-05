@@ -1,16 +1,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Assignment.tex : Modèle de document pour une série d'exercices à remettre dans un cours du Département de physique, de génie physique et d'optique - FSG - Université Laval. Les fichiers de chaque exercice fait à partir du modèle "OneProblem.tex" sont insérés à l'aide du package subfiles.
+%AssignmentEssay.tex : Modèle de document pour un énoncé de travail à remettre dans un cours du Département de physique, de génie physique et d'optique - FSG - Université Laval.
 %------------------------------------------------------------------
 %Créé par Claudine Nì. Allen
 %Contributions par -
 %Compilateur pdfLaTeX, distribution TeX Live 2020
-%Dernière modification : 16 janvier 2021
+%Dernière modification : 29 mars 2021
 %
 %ToDo
-% - Create an exam template using the "exam" class to use all its nifty tools and récupérer les choses utiles ici ainsi que de l'examen & Devoir dans le repo pour PHY-3003. 
-% - Ajouter %---BEGIN HOMEMADE FOOTER---% dans le projet de conception ventilateur en électronique FAIT ICI
-% - Voir pour tourner le début du document en titre et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
-% - I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package.
+% - Go through GenericStart ToDo list and sync here!
+% - Revoir le contenu de mon FOOTER des AssignmentEssay & ProblemSet dans l'idée que je vais passer sans papier et tout Gradescope. Changer "Ne pas oublier" pour "Veuillez" et rajouter "SANS simulations" comme pour PES-Devoir en PHY-3003.
+% - Add some lorem ipsum text using the package
+% - Create an exam template using the "exam" class to use all its nifty tools and récupérer les choses utiles ici ainsi que de l'examen & Devoir dans le repo pour PHY-3003. Doc : https://ctan.org/pkg/exam?lang=en , https://www.overleaf.com/learn/latex/Typesetting%20exams%20in%20LaTeX et checker le wikibook LaTeX.
+% - (Not sure I want this anymore...) I'd like to reduce the bottom margin on the last page, I was fiddling with something like \AtEndDocument{\newgeometry{bmargin=0cm}}, but it doesn't work so far. See docs of fancyhdr package. Or try to work with "\thispagestyle{}" below the footer.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
@@ -69,16 +70,19 @@
 
 %## Layout ##
 %%Watch for conflicts with the overall document class.
-\usepackage{geometry} %%page layout
-\usepackage{fancyhdr}
+\usepackage{geometry} %%page layout, see configuration below
+\usepackage{fancyhdr} %%headers & footers, see configuration below
 \usepackage{setspace} %%interline spacing tools ; unit relative to current font: em ~width of an 'M' (uppercase), typically equal to the font size in pt
 \usepackage{enumitem} %%tools to change list format
-\usepackage{import}
-%\usepackage{tasks,xsim,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
+%\usepackage{tasks,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
 
-%## To import files based on "OneProblem.tex" ##
-\usepackage{subfiles}
-\graphicspath{{folder/}{../folder/}{folder/}{../folder/}} %%The relative path to images, starting from each compilation file call, must be listed here otherwise the \includegraphics command will not work. The ../ stipulate one level up in the file tree. 
+%## Subdividing a document ##
+\usepackage{import} %%\import{_path_}{_filename_} includes the desired file.
+%\usepackage{subfiles} %also allows standalone compilation.
+%\newcommand{\onlyinsubfile}[1]{#1} %%for content compiled only in the subfile.
+%\graphicspath{{folder/}{../folder/}{folder/}{../folder/}} %The relative path to images, starting from each compilation file call, must be listed here otherwise the \includegraphics command will not work. The ../ stipulate one level up in the file tree.
+%\usepackage[active,tightpage]{preview} %output cropped just around the content. For the whole document, option active->inactive.
+%\setlength\PreviewBorder{20pt}
 
 %---------------------------------------------------------
 %### Settings ###
@@ -93,7 +97,6 @@
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
 \fancyfoot[C]{-\thepage-} %%bottom center page numbering
-\AtEndDocument{\thispagestyle{empty}} %%removes the last page number
 %\interfootnotelinepenalty=10000 %%uncomment if long footnotes are incorrectly spreading on several pages
 \widowpenalty=300 %%increase for less likely widow lines
 \clubpenalty=300  %%increase for less likely orphan lines
@@ -173,21 +176,19 @@
 %------ END HOMEMADE TITLE ------%
 %
 \vspace{-0.5em}
+\subsection*{}
 
-%Ici s'insèrent les exercices basés sur le modèle "OneProblem.tex"!
-\begin{enumerate}[label=\Roman*., itemsep=4ex]
-    \item \subfile{} %écrire le chemin complet en séparant les répertoires avec /
-    \item \subfile{}
-\end{enumerate}
+
  
  %------ BEGIN HOMEMADE FOOTER ------%
 \vfill
 \hrule
 \vspace{0.3em}
 \centering
-\textbf{N'oubliez pas d'expliciter votre démarche et de citer vos références.}\par
+\textbf{N'oubliez pas de citer vos références.}\par %% dans le cas de problèmes à développement, rajouter "et d'expliciter votre démarche".
 \vspace{-0.3em}
-La collaboration dans le respect des règles de la santé publique est encouragée, vous pouvez remettre un travail en formant une équipe de \textcolor{red}{XXXX} personnes au maximum. Selon le mode de remise précisé pour cette évaluation sur le site de cours, sélectionnez les pages correspondant à chaque numéro pour remettre votre travail en format PDF sur Gradescope OU numérotez les pages, imprimez et brochez votre travail pour le remettre en classe si cela est autorisé.\par
+La collaboration dans le respect des règles de la santé publique est encouragée, vous pouvez remettre un travail en formant une équipe de \textcolor{red}{XXXX} personnes au maximum. Selon le mode de remise précisé pour cette évaluation sur le site de cours, sélectionnez les pages correspondant à chaque numéro pour remettre votre travail en format PDF sur \href{https://www.gradescope.com/}{Gradescope} OU numérotez les pages, imprimez et brochez votre travail pour le remettre en classe si cela est autorisé.\par
 \vspace{1em}
 \hrule
+%\thispagestyle{empty}
 \end{document}

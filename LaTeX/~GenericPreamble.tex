@@ -4,7 +4,9 @@
 %Créé par Claudine Nì. Allen
 %Contributions par -
 %Compilateur pdfLaTeX, distribution TeX Live 2020
-%Dernière modification : 14 janvier 2021
+%Dernière modification : 29 mars 2021
+%
+%ToDo : VOIR GENERICSTART
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[l2tabu, orthodox]{nag} %%Check for obsolete commands
@@ -67,12 +69,19 @@
 
 %## Layout ##
 %%Watch for conflicts with the overall document class.
-\usepackage{geometry} %%page layout
-\usepackage{fancyhdr}
+\usepackage{geometry} %%page layout, see configuration below
+\usepackage{fancyhdr} %%headers & footers, see configuration below
 \usepackage{setspace} %%interline spacing tools ; unit relative to current font: em ~width of an 'M' (uppercase), typically equal to the font size in pt
 \usepackage{enumitem} %%tools to change list format
-\usepackage{import}
-%\usepackage{tasks,xsim,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
+%\usepackage{tasks,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries}
+
+%## Subdividing a document ##
+\usepackage{import} %%\import{_path_}{_filename_} includes the desired file.
+%\usepackage{subfiles} %also allows standalone compilation.
+%\newcommand{\onlyinsubfile}[1]{#1} %%for content compiled only in the subfile.
+%\graphicspath{{folder/}{../folder/}{folder/}{../folder/}} %The relative path to images, starting from each compilation file call, must be listed here otherwise the \includegraphics command will not work. The ../ stipulate one level up in the file tree.
+%\usepackage[active,tightpage]{preview} %output cropped just around the content. For the whole document, option active->inactive.
+%\setlength\PreviewBorder{20pt}
 
 %---------------------------------------------------------
 %### Settings ###

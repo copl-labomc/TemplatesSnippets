@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%OneProblem.tex : Modèle de document pour générer le .pdf d'un problème unique en exercice ou en démonstration dans un cours du Département de physique, de génie physique et d'optique - FSG - Université Laval. Ce fichier utilise le package subfiles, permettant aussi d'être inclus dans une série d'exercices basée sur le modèle "ProblemSet.tex". REMPLACER CETTE DESCRIPTION PAR UN SURVOL DU CONTENU DU PROBLÈME.
+%
+%SOURCE:
+%UTILISATION (D=devoir, E=examen, P=pratique - session année):
+%DIFFICULTÉ approximative de 1 à 3 étoiles:
+%------------------------------------------------------------------
+%Créé par Claudine Nì. Allen
+%Contributions par -
+%Compilateur pdfLaTeX, distribution TeX Live 2020
+%Dernière modification : 27 mars 2021
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\documentclass[ProblemSet.tex]{subfiles}
+%\documentclass[../fichier.tex]{subfiles} %%L'[option] spécifie le chemin relatif vers le fichier qui appelle ce problème en compilant. Les ../ indiquent de remonter d'un niveau dans l'arborescence de fichiers.
+%---------------------------------------------------------
+\begin{document}
+%---------------------------------------------------------
+\begin{preview}
+\onlyinsubfile{\import{./}{HeaderCustom.tex}} %Replaces the output of the fancyhdr package that is cropped in preview mode!
+
+%
+\end{preview}
+%---------------------------------------------------------
+\end{document}
+%---------------------------------------------------------

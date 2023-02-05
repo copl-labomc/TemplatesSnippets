@@ -4,10 +4,20 @@
 %Créé par Claudine Nì. Allen
 %Contributions par -
 %Compilateur pdfLaTeX, distribution TeX Live 2020
-%Dernière modification : 14 janvier 2021
+%Dernière modification : 3 avril 2021
 %
 %
 %ToDo: 
+% - Maintaining of setspace, geometry and other layout packages seemed somewhat abandoned since LaTeX2e, check out if I continue with them or find out replacement methods.
+% - Move the \setlength{PreviewBorder} into the configuration setting section.
+% - Intégrer les éléments d'intérêts du template que j'ai collé après \end{document} du travail de conception d'une jonction p-n, notamment l'environnement \begin{lstlisting}
+% - (check ze internet & redit prefs + À discuter avec Louis) : change overleaf compiler from pdflatex to lualatex? later seems recommended for multilingual support.
+% - (À discuter avec Louis) Splitter le preambule en 3 fichiers .tex: packages - layout et related configs - newcommands à mettre dans les sous-templates avec \import ou \input (have a look at https://www.reddit.com/r/LaTeX/comments/r3aw59/what_is_the_difference_between_the_subfiles/ to choose) mais la doc d'Overleaf recommande un fichier .sty... ouf, on verra!
+% - Mieux maîtriser le package fancyhdr (vidéos youtube? Doc: https://ctan.org/pkg/fancyhdr?lang=en ,  https://www.overleaf.com/learn/latex/Headers_and_footers , https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_2):_Page_Layout#The_fancyhdr_package & ci-dessous vis-à-vis le package + checker le wikibook LaTeX) 
+% - changer pour toujours définir \fancypagestyle{...nommer le style...}{...commandes...} puis appeler \pagestyle{...même nom de style...} soit avant ou après \begin{document} selon si on veut un style global ou un style local qui se switchera plus facilement.
+% - Voir pour tourner le début du document en "vraie" en-tête avec fancyhdr et inclure un logo ULaval (si ok avec comms) : https://tex.stackexchange.com/questions/238520/how-to-correctly-include-a-header-image-only-on-the-first-page
+% - Revoir le contenu de mon FOOTER des AssignmentEssay & ProblemSet dans l'idée que je vais passer sans papier et tout Gradescope. Changer "Ne pas oublier" pour "Veuillez" et rajouter "SANS simulations" comme pour PES-Devoir en PHY-3003.
+% - Pour projet à plusieurs fichiers .tex de même header/footer, ça peut être plus facile d'avoir le \fancypagestyle{...nommer le style...}{...commandes...} définit dans un fichier à part et de \include dans les fichiers qui en ont besoin... quoique mon ToDo de \import de layouts + configs ci-dessus planifie déjà pas mal ça haha!
 % - Fix links to CTAN documentation to get the dynamic address, hence mirror independent
 % - Après discussion avec notre conseiller bibliothécaire & Pat Desrosier puis consultation de <https://www.overleaf.com/learn/latex/Articles%2FTaming_LaTeX's_Page_Layout:_A_Visual_Template_and_Toolset_for_Book_Authors>, revise package fancyhdr with associated header & footer configurations, 
 % - Complete & add examples for most common package uses in the document environment - main text
@@ -83,12 +93,19 @@
 
 %## Layout ##
 %%When using classes and templates with specific format guidelines, especially from academic journals, some of the following packages and configurations could be in conflict, thus comment out as needed. 
-\usepackage{geometry} %%see layout configuration below
-\usepackage{fancyhdr}
+\usepackage{geometry} %%page layout, see configuration below
+\usepackage{fancyhdr} %%headers & footers, see configuration below
 \usepackage{setspace} %%interline spacing tools explained at <https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting#Line_spacing>; horizontal math spacing guide at <https://www.overleaf.com/learn/latex/Spacing_in_math_mode#Reference_guide>; for a relative unit set by the character size in the current font, use em - roughly the width of an 'M' (uppercase), a distance typically equal to the font size in pt
 \usepackage{enumitem} %%commands to change list format, documented at <http://mirrors.ctan.org/macros/latex/contrib/enumitem/enumitem.pdf> with basic list explanations at <https://www.overleaf.com/learn/latex/Lists>
-\usepackage{import} %%\import{_path_}{_filename_} to include other project files in the compiled main file
-%\usepackage{tasks,xsim,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively. The first two target exams & exercises typesetting.
+%\usepackage{tasks,epigraph,boxedminipage,multicol,lscape,rotating,makeidx,showidx,glossaries} %%other nice formatting tools, info for the last 4 packages at <https://en.wikibooks.org/wiki/LaTeX/Rotations>, <https://en.wikibooks.org/wiki/LaTeX/Indexing> and <https://en.wikibooks.org/wiki/LaTeX/Glossary> respectively. The first two target exams & exercises typesetting.
+
+%## Subdividing a document ##
+\usepackage{import} %%\import{_path_}{_filename_} to include other project files in the compiled main file.
+%\usepackage{subfiles} %to allow either standalone compilation of the subfile or importing it in the compiled main file. Works with the "OneProblem.tex" template.
+%\newcommand{\onlyinsubfile}[1]{#1} %command to add content compiled only in the subfile.
+%\graphicspath{{folder/}{../folder/}{folder/}{../folder/}} %The relative path to images, starting from each compilation file call, must be listed here otherwise the \includegraphics command will not work. The ../ stipulate one level up in the file tree.
+%\usepackage[active,tightpage]{preview} %output cropped just around the content. For the whole document, option active->inactive.
+%\setlength\PreviewBorder{20pt}
 
 %%For more packages, search CTAN or browse it by topics. Also of interest: <https://www.ctan.org/pkg/latex-tools>, <https://en.wikibooks.org/wiki/LaTeX/Package_Reference>, PGF TikZ <https://ctan.org/topic/pgf-tikz>, PSTricks <https://ctan.org/topic/pstricks> 
 
