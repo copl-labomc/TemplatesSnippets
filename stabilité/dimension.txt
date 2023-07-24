@@ -1,0 +1,42 @@
+longueur
+3m77=29.7
+tout les laser à 1m45 en bas=11.4
+autre laser 64=5.0
+spectro à 34 vers le haut=2.7
+crystal 18=1.4 à 8 cm en haut du laser=0.6
+ampli 48=3.8 à 7cm en bas du verdi=0.6
+spectro 55=4.3
+cryostat 34.5=2.7
+base cryo 8.5=07
+verdi 15.5=1.2
+caméra 21= 1.7
+caméra temp 7=0.6
+
+
+largeur
+
+1m25=9.8
+autre laser 70=11.76 ou 5.5
+spectro 32 vers la droite=5.4ou 2.5
+crystal 13=1.0 à 47 à gauche du laser=7.9ou3.7
+ampli 14=2.4ou1.1 à 64 à droite du verdi=10.8ou5.0
+spectro 28.5=4.7ou2.2
+cryo 54.5=9.2ou4.3
+base cryo 17=2.9ou1.3
+verdi47.5=XXou3.7v,n
+caméra=0.7
+caméra temp=1.9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
