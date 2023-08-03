@@ -1,0 +1,90 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+#nombre de frame présente dans la vidéo
+nbrframe=52
+#nom du fichier des données exportées par fiji
+name = "cut_Tracks.xml"
+#ouverture du fichier
+f= open(name)
+#enregistrement des lignes du fichier dans une liste
+line=f.readlines()
+f.close()
+
+def nombre(lign, x):
+    " lign= le numéro de ligne a mesurer"
+    " x= l'index du prmeier caractère a mesurer -1"
+    "return:int, nombre extrait à une position spécifique dans une ligne spécifique du fichier txt"
+
+    #dans le cas où le nombre est composé de 2 chiffres
+    if line[lign-1][x+1] != '"':
+        N= int(line[lign-1][x]+line[lign-1][x+1])
+    #si le nombre est composé d'un seul chiffre
+    else:
+        N= int(line[lign-1][x])
+
+    return N
+
+#correspond au nombre de spots à analyser
+N= nombre(2,17)
+
+
+def stab(frame):
+        "Nombre de frame de la vidéo"
+        "return:list, bombre de frame, et position x et y des différents spots"
+
+        #création d'une liste de temps
+        T= np.linspace(0, frame, frame )
+        #On définit la première ligne à analyser
+        ligne= 3
+        X= []
+        Y= []
+        #On boucle sur les spots
+        for j in range(N):
+            #Création des listes correspondant aux positions pour chaque spot
+            spotx=np.zeros(frame)
+            spoty=np.zeros(frame)
+            #On récupère le nombre de frame pour le spot j car les spots ne sont pas obligatoirement mesurées sur l'intégralite des frames de la vidéo
+            nbreframe= nombre(ligne, 20)
+            #On prend que les spots qui apparaissent un certain temps
+            if  nbreframe>= 0.70*frame:
+                #On boucle sur les frames du spot
+                for i in range(nbreframe):
+                    #On récupère la ligne correspondant à la frame i
+                    ligne=ligne+1
+                    #On crée une liste provisoire contenant les données de la frame i
+                    a=line[ligne-1]
+                    #On récupère les coordonnées x et y de la frame i à un certain degré de précision
+                    spoty[nombre(ligne,18)]=a[int(a.rfind('y'))+3:int(a.rfind('y'))+8]
+                    spotx[nombre(ligne,18)]=a[int(a.rfind('x'))+3:int(a.rfind('x'))+7]
+                #On passe au spot suivant                
+                ligne=ligne+2
+                # On mets les listes de coordonnées x et y des spots dans une liste globale
+                X.append(spotx)
+                Y.append(spoty)
+            else:
+                ligne=ligne+nbreframe+2
+        return T,X,Y
+
+#On affiche les graphes des poistions x et y pour tous les spots 
+a=0
+for i in stab(52)[1]:
+    a+=1
+    plt.plot(stab(52)[0],i, label="spot"+str(a))
+plt.legend()
+plt.xlabel("Frame")
+plt.ylabel("Position x")
+plt.show()
+
+a=0
+for i in stab(52)[2]:
+    a+=1
+    plt.plot(stab(52)[0],i, label="spot"+str(a))
+plt.legend()
+plt.xlabel("Frame")
+plt.ylabel("Position y")
+plt.show()
+
+
+            

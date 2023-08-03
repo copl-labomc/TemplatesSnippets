@@ -1,0 +1,55 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+from scipy.special import erfc
+
+# nom du fichier à lire
+#name= "Fibre_2_2MHZ_OD0,3_100percent.dat"
+name= "Fibre_1_2MHZ_OD0,3_10percent.dat"
+#différentes fonctions utilisées pour le fit
+
+def exponential(x, a, b, c, x0, d, e):
+    return  ((erfc(-x+d)/e)/2)*a*np.exp(-b*(x-x0))+c
+
+
+def doubleexponential(x, a, b, c, d, e):
+    return (erfc-x/a)*(b*np.exp(-x/c)+ d*np.exp(-x/e))
+
+def tempo(name):
+    #a correpond au cabal 1, b au canal 2
+    a= np.loadtxt(name,skiprows=10, usecols=0)
+    b= np.loadtxt(name,skiprows=10, usecols=1)
+    #t correspond au temps allant de 0 à 6000 ns par pas de 40 ps
+    t= np.arange(0,6000,0.04)
+    #on tronnque les valeurs de a et t pour ne garder que les valeurs intéressantes car les données présentes une très longue décroissance
+    a1=a[0:2780]
+    t1=t[0:2780]
+
+
+
+
+#fit des données avec la méthode trf
+    popt, pcov = curve_fit(exponential, t1, a1, p0=[30, 0.09, 10, 30, 20, 0.01], method= "trf", maxfev=1000000)
+    afit= exponential(t1, *popt)
+    return t1,a1,afit
+
+
+
+#affichage des données avec le cruve fitting
+plt.xlabel("temps (ns)")
+plt.ylabel("Counts (cps)")
+plt.title("Fibre 1,250 µL, 2MHz, 80K")
+plt.plot(tempo("Fibre_1_2MHZ_OD1.0_10percent_80K.dat")[0],tempo("Fibre_1_2MHZ_OD1.0_10percent_80K.dat")[1]*10)
+
+#liste des fittings manuels
+#pour la fibre 1
+#plt.plot(tempo(name)[0],exponential(tempo(name)[0], 71.73, 0.17, 54.7922, 31.71,29.3,0.006))
+#Pour fibre 1 80K
+plt.plot(tempo("Fibre_1_2MHZ_OD1.0_10percent_80K.dat")[0],exponential(tempo("Fibre_1_2MHZ_OD1.0_10percent_80K.dat")[0], 71.73, 0.12, 54.7922, 31.71,29.6,0.0052))
+#pour la fibre 3
+#plt.plot(t1,exponential(t1, 71.73, 0.16, 54.7922, 31.71,29.0,0.0141))
+#Pour la fibre 2
+#plt.plot(t1,exponential(t1, 71.73, 1, 54.7922, 31.71,28,0.02))
+plt.show()
+ 
+
