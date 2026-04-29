@@ -1,13 +1,8 @@
+#%%
 import numpy as np
 import sys
 
-if __name__ == "__main__":
-    V_cQDs = float(sys.argv[1])
-    V_solvant = float(sys.argv[2])
-    Awave = float(sys.argv[3])
-    Aexc = float(sys.argv[4])
-    print(calculate_qd_concentration(V_cQDs, V_solvant, Awave, Aexc))
-
+#%%
 def calculate_qd_concentration(V_QDs, V_solvant, Awave, Aexc):
     """
     Calculates the concentration of different colloidal quantum dot (cQD) materials based on the
@@ -47,7 +42,20 @@ def calculate_qd_concentration(V_QDs, V_solvant, Awave, Aexc):
     C_Peng_CdS = Aexc / (extinction_CdS * 1)
     
     # Calculate initial QD concentration
-    V_diluted = V_cQDs + V_solvant
+    V_diluted = V_QDs + V_solvant
     C_Peng = C_Peng_CdTe * V_diluted / V_QDs
     
-    return C_Peng
+    return C_Peng_CdSe
+
+#%%
+if __name__ == "__main__":
+    V_cQDs = float(sys.argv[1])
+    V_solvant = float(sys.argv[2])
+    Awave = float(sys.argv[3])
+    Aexc = float(sys.argv[4])
+    print(calculate_qd_concentration(V_cQDs, V_solvant, Awave, Aexc))
+
+#%%
+print(f"initial C with 1:100 dilution:{calculate_qd_concentration(0.3, 29.7, 573.18, 0.09676529467)}")
+print(f"initial C with 1:1000 dilution:{calculate_qd_concentration(0.3, 299.7, 568.99, 0.0123021761)}")
+# %%
