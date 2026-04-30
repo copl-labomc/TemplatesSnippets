@@ -57,5 +57,6 @@ if __name__ == "__main__":
 
 #%%
 print(f"initial C with 1:100 dilution:{calculate_qd_concentration(0.3, 29.7, 573.18, 0.09676529467)}")
+print(f"initial C with 1:200 dilution:{calculate_qd_concentration(0.3, 59.7, 572.13, 0.0468599461)}")
 print(f"initial C with 1:1000 dilution:{calculate_qd_concentration(0.3, 299.7, 568.99, 0.0123021761)}")
 # %%
