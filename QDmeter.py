@@ -43,9 +43,9 @@ def calculate_qd_concentration(V_QDs, V_solvant, Awave, Aexc):
     
     # Calculate initial QD concentration
     V_diluted = V_QDs + V_solvant
-    C_Peng = C_Peng_CdTe * V_diluted / V_QDs
+    C_Peng = C_Peng_CdSe * V_diluted / V_QDs
     
-    return C_Peng_CdSe
+    return C_Peng
 
 #%%
 if __name__ == "__main__":
@@ -56,7 +56,31 @@ if __name__ == "__main__":
     print(calculate_qd_concentration(V_cQDs, V_solvant, Awave, Aexc))
 
 #%%
+#initial batch of measurements
 print(f"initial C with 1:100 dilution:{calculate_qd_concentration(0.3, 29.7, 573.18, 0.09676529467)}")
 print(f"initial C with 1:200 dilution:{calculate_qd_concentration(0.3, 59.7, 572.13, 0.0468599461)}")
 print(f"initial C with 1:1000 dilution:{calculate_qd_concentration(0.3, 299.7, 568.99, 0.0123021761)}")
+# %%
+# May 7th batch of measurements
+C_100 = calculate_qd_concentration(0.3, 29.7, 570.74, 0.1184577197)
+print(f"initial C with 1:100 dilution: {C_100} mol/L")
+C_200 = calculate_qd_concentration(0.3, 59.7, 568.99, 0.06279129535)
+print(f"initial C with 1:200 dilution: {C_200} mol/L")
+C_400 = calculate_qd_concentration(0.3, 119.7, 566.89, 0.03251485899)
+print(f"initial C with 1:400 dilution: {C_400} mol/L")
+C_600 = calculate_qd_concentration(0.3, 179.7, 565.85, 0.02710300684)
+print(f"initial C with 1:600 dilution: {C_600} mol/L")
+C_800 = calculate_qd_concentration(0.3, 239.7, 563.4, 0.019982161)
+print(f"initial C with 1:800 dilution: {C_800}")
+C_1000 = calculate_qd_concentration(0.3, 299.7, 562.7, 0.01922318526)
+print(f"initial C with 1:1000 dilution: {C_1000}")
+# %%
+C_full = np.average([C_100, C_200, C_400, C_600, C_800, C_1000])
+C_STD_full = np.std([C_100, C_200, C_400, C_600, C_800, C_1000])
+#C_cropped = np.average([])
+print(f"Average initial C, all tests: {round(C_full, 7)} ± {round(C_STD_full, 7)} mol/L")
+print(f"Volume of stock solution for 120 nmol: {round(120e-09/C_full * 1000, 4)} mL")
+#print()
+#print(f"Average initial C, 400 to 100 factor: {C_cropped}")
+#print(f"Volume of stock solution for 120 nmol: {120e-09/C_cropped * 1000} mL")
 # %%
