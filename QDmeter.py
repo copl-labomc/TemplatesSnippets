@@ -63,6 +63,9 @@ if __name__ == "__main__":
 print(f"initial C with 1:100 dilution:{calculate_qd_concentration(0.3, 29.7, 573.18, 0.09676529467, 'CdSe')}")
 print(f"initial C with 1:200 dilution:{calculate_qd_concentration(0.3, 59.7, 572.13, 0.0468599461, 'CdSe')}")
 print(f"initial C with 1:1000 dilution:{calculate_qd_concentration(0.3, 299.7, 568.99, 0.0123021761, 'CdSe')}")
+
+
+
 # %%
 # May 7th batch of measurements
 C_100 = calculate_qd_concentration(0.3, 29.7, 570.74, 0.1184577197, "CdSe")
@@ -83,4 +86,26 @@ C_STD_full = np.std([C_100, C_200, C_400, C_600, C_800, C_1000])
 
 print(f"Average initial C, all tests: {round(C_full, 7)} ± {round(C_STD_full, 7)} mol/L")
 print(f"Volume of stock solution for 120 nmol: {round(120e-09/C_full * 1000, 4)} mL")
+
+# %%
+# May 7th batch of measurements, wavelengths corrected because I am no longer stupid
+C2_100 = calculate_qd_concentration(0.3, 29.7, 5.61012573e+02, 1.55972853e-01, "CdSe")
+print(f"initial C with 1:100 dilution: {C_100} mol/L")
+C2_200 = calculate_qd_concentration(0.3, 59.7, 5.61012573e+02, 7.47337118e-02, "CdSe")
+print(f"initial C with 1:200 dilution: {C_200} mol/L")
+C2_400 = calculate_qd_concentration(0.3, 119.7, 5.61012573e+02, 3.63165103e-02, "CdSe")
+print(f"initial C with 1:400 dilution: {C_400} mol/L")
+C2_600 = calculate_qd_concentration(0.3, 179.7, 5.61012573e+02, 2.91566607e-02, "CdSe")
+print(f"initial C with 1:600 dilution: {C_600} mol/L")
+C2_800 = calculate_qd_concentration(0.3, 239.7, 5.61012573e+02, 2.02075429e-02, "CdSe")
+print(f"initial C with 1:800 dilution: {C_800} mol/L")
+C2_1000 = calculate_qd_concentration(0.3, 299.7, 5.61012573e+02, 1.95113625e-02, "CdSe")
+print(f"initial C with 1:1000 dilution: {C_1000} mol/L")
+# %%
+C2_full = np.average([C2_100, C2_200, C2_400, C2_600, C2_800, C2_1000])
+C2_STD_full = np.std([C2_100, C2_200, C2_400, C2_600, C2_800, C2_1000])
+
+print(f"Average initial C, all tests: {round(C2_full, 7)} ± {round(C2_STD_full, 7)} mol/L")
+print(f"Volume of stock solution for 120 nmol: {round(120e-09/C2_full * 1000, 4)} mL")
+
 # %%
